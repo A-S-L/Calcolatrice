@@ -27,17 +27,17 @@ namespace Calcolatrice_A_S_L
             string risultato_lettere = "";
             string risultato_cifre = "";
             if (t_c)
-               textBox2.Text= esp_testo_numero(textBox1.Text,out risultato_cifre);
+               textBoxNumeri.Text= esp_testo_numero(textBoxParole.Text,out risultato_cifre);
             else
-               textBox1.Text= esp_numero_testo(textBox2.Text, out risultato_cifre);
+               textBoxParole.Text= esp_numero_testo(textBoxNumeri.Text, out risultato_cifre);
             string boh = "";
             risultato_lettere = esp_numero_testo(risultato_cifre, out boh);
-            textBox3.Text = risultato_lettere;
-            textBox4.Text = risultato_cifre;
+            textBoxRisultatoParole.Text = risultato_lettere;
+            textBoxRisultatoNumeri.Text = risultato_cifre;
         }
         public string esp_testo_numero(string testo, out string Risultato)
         {
-            deg = radioButton1.Checked;
+            deg = radioButtonRadianti.Checked;
             string[] termini = testo.ToLower().Split(' ');
             termini = termini.Where(x => !string.IsNullOrEmpty(x)).ToArray();
             string[] risultato = new string[0];
@@ -88,7 +88,7 @@ namespace Calcolatrice_A_S_L
                 precedente = termine;
             }
             string Espressione = string.Join(" ", risultato);
-            textBox2.Text = Espressione.Replace(" ", "");
+            textBoxNumeri.Text = Espressione.Replace(" ", "");
             Risultato = "";
             if (Parser.EspressioneCorretta(Espressione))
             {
@@ -97,7 +97,7 @@ namespace Calcolatrice_A_S_L
                     if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?") == DialogResult.OK)
                     {
                         Grafico_Form.inizio(Espressione);
-                        label1.Text = "X= " + string.Join("\nX= ", risultati_x.ToArray());
+                        labelX.Text = "X= " + string.Join("\nX= ", risultati_x.ToArray());
                     }
                 }
                 Risultato=  Parser.CalcolaEspressione(Espressione,0).ToString();
@@ -203,17 +203,123 @@ namespace Calcolatrice_A_S_L
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            t_c = radioButton3.Checked;
+            t_c = radioButtonTestoCifra.Checked;
             if(t_c)
             {
-                textBox1.ReadOnly = false;
-                textBox2.ReadOnly = true;
+                textBoxParole.ReadOnly = false;
+                textBoxNumeri.ReadOnly = true;
             }
          else
             {
-                textBox1.ReadOnly = true;
-                textBox2.ReadOnly = false;
+                textBoxParole.ReadOnly = true;
+                textBoxNumeri.ReadOnly = false;
             }
+        }
+
+        bool chiudiPanel = false;
+
+        private void ToolStripButtonInfo_Click(object sender, EventArgs e)
+        {
+            chiudiPanel = true;
+            ToolStripButtonInfo.Enabled = false;
+            
+            int larghezza = 0;
+
+            Button ButtonClose = new Button();
+            Label labelIstruzioni = new Label();
+            RichTextBox richTextBoxInfo = new RichTextBox();
+            PictureBox pictureBoxSchermata = new PictureBox();
+
+            Panel dynamicPanel = new Panel();
+            dynamicPanel.Name = "dynamicPanel";
+            dynamicPanel.BackColor = Color.LightGray;
+            dynamicPanel.Location = new System.Drawing.Point(500, 100);
+            dynamicPanel.Size = new Size(600, 350);
+            
+            
+            dynamicPanel.MouseDown += new MouseEventHandler(mouse_down);
+            dynamicPanel.MouseUp += new MouseEventHandler(mouse_up);
+            dynamicPanel.MouseMove += new MouseEventHandler(mouse_move);
+           
+            Controls.Add(dynamicPanel);
+
+          
+            ButtonClose.Name = "ButtonClose";
+            ButtonClose.Text = "Chiudi";
+            ButtonClose.Size = new Size(20, 20);
+
+            larghezza = dynamicPanel.Size.Width - (ButtonClose.Size.Width);
+
+            ButtonClose.Location = new System.Drawing.Point(larghezza, 0);
+            ButtonClose.BackgroundImage = Image.FromFile("chiusura.ico");
+            ButtonClose.BackgroundImageLayout = ImageLayout.Stretch;
+            ButtonClose.BackColor = Color.White;
+            ButtonClose.Text = "";
+            
+            labelIstruzioni.Name = "labelIstruzioni";
+            labelIstruzioni.Text = "Istruzioni di utilizzo:";
+                
+                ;
+            labelIstruzioni.Location = new System.Drawing.Point(20, 10);
+            labelIstruzioni.Size = new Size(170, 20);
+            labelIstruzioni.Font = new Font("Segoe Print",10);
+
+            richTextBoxInfo.ReadOnly = true;
+            richTextBoxInfo.Name = "richTextBoxInfo";
+            richTextBoxInfo.Text = "esempi / eccezioni / sintassi:" + "\n" +
+                "200027 = duecentomilaventisettte (senza la 'e' tra duecentomila e ventisettte" + "\n"+
+                "188 = centoottantotto (con 2 'o')"+"\n"+
+                "numero^2 = numero alla due"+"\n"+
+                "√numero = esponente radice di numero ( due radice di due ) "+"\n"+
+                "6*(2+2) = numero per aperta parentesi numero piu numero chiusa parentesi"+"\n";
+            richTextBoxInfo.Location = new System.Drawing.Point(20, 50);
+            richTextBoxInfo.Size = new Size(500, 100);
+            richTextBoxInfo.Font= new Font("Segoe Print", 10);
+
+            pictureBoxSchermata.Size = new Size(380, 190);
+            pictureBoxSchermata.Location = new System.Drawing.Point(20, 60 + richTextBoxInfo.Height);
+            pictureBoxSchermata.BackgroundImage = Image.FromFile("schermata.jpg");
+            pictureBoxSchermata.BackgroundImageLayout = ImageLayout.Stretch;
+
+            dynamicPanel.BringToFront();
+            dynamicPanel.Controls.Add(ButtonClose);
+            dynamicPanel.Controls.Add(labelIstruzioni);
+            dynamicPanel.Controls.Add(richTextBoxInfo);
+            dynamicPanel.Controls.Add(pictureBoxSchermata);
+            ButtonClose.MouseClick += new MouseEventHandler((o,s)=>ChiudiPanel(o,s,dynamicPanel));
+        }
+
+        Point mousegiu;
+        bool moving = false;
+        public void mouse_down(object sender, MouseEventArgs e)
+        {
+            moving = true;
+            mousegiu = e.Location;
+        }
+        public void mouse_move(object sender, MouseEventArgs e)
+        {
+          if(moving)
+            {
+                Panel pannello = (Panel)sender;
+                pannello.Left = e.X + pannello.Left - mousegiu.X;
+                pannello.Top = e.Y + pannello.Top - mousegiu.Y;
+                
+            }
+        }
+        public void mouse_up(object sender, MouseEventArgs e)
+        {
+            moving = false;
+        }
+
+        public void ChiudiPanel(object sender, MouseEventArgs e,Panel pannello)
+        {
+            
+            if (chiudiPanel)
+            {
+                pannello.Hide();
+                ToolStripButtonInfo.Enabled = true;
+            }
+                
         }
     }
 }
