@@ -45,15 +45,15 @@ namespace Calcolatrice_A_S_L
     }
     abstract class UnTermine : Operatore
     {
-        public abstract Func<double, double> Funzione(Func<double, double> ArgomentoDestra);
+        public abstract Func<double, double> Funzione(Func<double, double> ArgomentoDestra, bool radianti);
     }
     sealed class Seno : UnTermine
     {
         public Seno() { _Simbolo= "sen"; }
-        public override Func<double, double> Funzione(Func<double, double> ArgomentoDestra)
+        public override Func<double, double> Funzione(Func<double, double> ArgomentoDestra,bool radianti )
         {
 
-            if (Form1.deg)
+            if (radianti)
                 return x => Math.Sin(ArgomentoDestra(x));
             else
                 return x => Math.Sin(ArgomentoDestra(x) * Math.PI / 180);
@@ -63,9 +63,9 @@ namespace Calcolatrice_A_S_L
     sealed class Coseno : UnTermine
     {
         public Coseno() { _Simbolo = "cos"; }
-        public override Func<double, double> Funzione(Func<double, double> ArgomentoDestra)
+        public override Func<double, double> Funzione(Func<double, double> ArgomentoDestra,bool radianti)
         {
-            if(Form1.deg)
+            if(radianti)
             return x => Math.Cos(ArgomentoDestra(x) );
             else
                 return x => Math.Cos(ArgomentoDestra(x)* Math.PI / 180);
@@ -74,9 +74,9 @@ namespace Calcolatrice_A_S_L
     sealed class Tangente : UnTermine
     {
         public Tangente() { _Simbolo = "tg"; }
-        public override Func<double, double> Funzione(Func<double, double> ArgomentoDestra)
+        public override Func<double, double> Funzione(Func<double, double> ArgomentoDestra,bool radianti )
         {
-            if (Form1.deg)
+            if (radianti)
                 return x => Math.Tan(ArgomentoDestra(x));
             else
                 return x => Math.Tan(ArgomentoDestra(x) * Math.PI / 180);
@@ -85,9 +85,9 @@ namespace Calcolatrice_A_S_L
     sealed class Cotangente : UnTermine
     {
         public Cotangente() { _Simbolo = "cotg"; }
-        public override Func<double, double> Funzione(Func<double, double> ArgomentoDestra)
+        public override Func<double, double> Funzione(Func<double, double> ArgomentoDestra,bool radianti)
         {
-            if (Form1.deg)
+            if (radianti)
                 return x => Math.Cos(ArgomentoDestra(x))/Math.Sin(ArgomentoDestra(x));
             else
                 return x => Math.Cos(ArgomentoDestra(x) * Math.PI / 180) / Math.Sin(ArgomentoDestra(x) * Math.PI / 180);

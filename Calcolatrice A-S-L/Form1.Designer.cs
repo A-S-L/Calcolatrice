@@ -114,14 +114,12 @@
             // 
             // labelX
             // 
-            this.labelX.AutoSize = true;
             this.labelX.Font = new System.Drawing.Font("Segoe Print", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelX.Location = new System.Drawing.Point(301, 220);
+            this.labelX.Location = new System.Drawing.Point(289, 194);
             this.labelX.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelX.Name = "labelX";
-            this.labelX.Size = new System.Drawing.Size(24, 19);
+            this.labelX.Size = new System.Drawing.Size(509, 143);
             this.labelX.TabIndex = 5;
-            this.labelX.Text = "X=";
             // 
             // textBoxRisultatoParole
             // 

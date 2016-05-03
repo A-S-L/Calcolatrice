@@ -23,18 +23,18 @@ namespace Calcolatrice_A_S_L
             new RadiceQuadrata(),
             new Modulo()
         };
-        static Func<double, double> AnalizzaTermini(string espressione)
+        static Func<double, double> AnalizzaTermini(string espressione, bool radianti)
         {
-            var Componenti = DividiTermini(espressione);
-            return AnalizzaComponenti(Componenti);
+            var Componenti = DividiTermini(espressione, radianti);
+            return AnalizzaComponenti(Componenti, radianti);
         }
 
-        public static bool EspressioneCorretta(string espressione)
+        public static bool EspressioneCorretta(string espressione, bool radianti)
         {
             try
             {
-                var Componenti = DividiTermini(espressione);
-                AnalizzaComponenti(Componenti);
+                var Componenti = DividiTermini(espressione, radianti);
+                AnalizzaComponenti(Componenti, radianti);
                 return true;
             }
             catch (Exception)
@@ -44,11 +44,11 @@ namespace Calcolatrice_A_S_L
             }
 
         }
-        public static double CalcolaEspressione(string espressione, double x)
+        public static double CalcolaEspressione(string espressione, double x, bool radianti)
         {
-            return AnalizzaTermini(espressione)(x);
+            return AnalizzaTermini(espressione, radianti)(x);
         }
-        static Func<double, double> AnalizzaComponenti(List<Operatore> Componenti)
+        static Func<double, double> AnalizzaComponenti(List<Operatore> Componenti, bool radianti)
         {
 
             if (Componenti.Count == 1)
@@ -73,9 +73,9 @@ namespace Calcolatrice_A_S_L
                     if (simbolo is Sottrazione && ArgomentoSinistra.Count == 0)
                         ArgomentoSinistra.Add(new Numero(0));
                     if (simbolo is UnTermine)
-                        return (simbolo as UnTermine).Funzione(AnalizzaComponenti(ArgomentoDestra));
+                        return (simbolo as UnTermine).Funzione(AnalizzaComponenti(ArgomentoDestra, radianti), radianti);
                     if (simbolo is DueTermini)
-                        return (simbolo as DueTermini).Funzione(AnalizzaComponenti(ArgomentoSinistra), AnalizzaComponenti(ArgomentoDestra));
+                        return (simbolo as DueTermini).Funzione(AnalizzaComponenti(ArgomentoSinistra, radianti), AnalizzaComponenti(ArgomentoDestra, radianti));
 
 
                 }
@@ -83,7 +83,7 @@ namespace Calcolatrice_A_S_L
             throw new ArgumentException("Errore");
         }
 
-        static List<Operatore> DividiTermini(string espressione)
+        static List<Operatore> DividiTermini(string espressione, bool radianti)
         {
             List<Operatore> risultato = new List<Operatore>();
             int indice = 0;
@@ -133,7 +133,7 @@ namespace Calcolatrice_A_S_L
                         else if (espressione.Substring(indice2, 1).Equals(")"))
                             parentesi--;
                     }
-                    risultato.Add(new Parentesi(AnalizzaTermini(espressione.Substring(indice + 1, indice2 - indice - 1))));
+                    risultato.Add(new Parentesi(AnalizzaTermini(espressione.Substring(indice + 1, indice2 - indice - 1), radianti)));
                     indice = indice2 + 1;
 
                     if (simbolonumerico && !(risultato.Last() is DueTermini))

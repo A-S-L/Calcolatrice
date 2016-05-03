@@ -89,18 +89,18 @@ namespace Calcolatrice_A_S_L
             }
             string Espressione = string.Join(" ", risultato);
             textBoxNumeri.Text = Espressione.Replace(" ", "");
-            Risultato = "";
-            if (Parser.EspressioneCorretta(Espressione))
+            Risultato = "Non valido";
+            if (Parser.EspressioneCorretta(Espressione,deg))
             {
                 if (Espressione.Contains("x"))
                 {
-                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?") == DialogResult.OK)
+                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?","Calcolatrice",MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        Grafico_Form.inizio(Espressione);
-                        labelX.Text = "X= " + string.Join("\nX= ", risultati_x.ToArray());
+                        Grafico_Form.inizio(Espressione,deg);
+                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
                     }
                 }
-                Risultato=  Parser.CalcolaEspressione(Espressione,0).ToString();
+                Risultato=  Parser.CalcolaEspressione(Espressione,0,deg).ToString();
 
 
             }
@@ -125,6 +125,12 @@ namespace Calcolatrice_A_S_L
                             {
                                 Array.Resize(ref risultato, risultato.Length + 1);
                                 risultato[risultato.Length - 1] = Operatori.Operatori_diz.FirstOrDefault(x => x.Value == op.Substring(inizio, num_cifre - inizio)).Key;
+                                inizio = num_cifre;
+                            }
+                            if(op.Substring(inizio, num_cifre - inizio)==",")
+                            {
+                                Array.Resize(ref risultato, risultato.Length + 1);
+                                risultato[risultato.Length - 1] ="virgola" ;
                                 inizio = num_cifre;
                             }
                             num_cifre++;
@@ -173,7 +179,21 @@ namespace Calcolatrice_A_S_L
 
                 num = "";
             }
-            Risultato = Parser.CalcolaEspressione(numero,0).ToString();
+            Risultato = "Non valido";
+            if (Parser.EspressioneCorretta(numero, deg))
+            {
+                if (numero.Contains("x"))
+                {
+                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        Grafico_Form.inizio(numero, deg);
+                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                    }
+                }
+                Risultato = Parser.CalcolaEspressione(numero, 0, deg).ToString();
+
+
+            }
             return  string.Join(" ", risultato);
 
            
@@ -233,7 +253,7 @@ namespace Calcolatrice_A_S_L
             Panel dynamicPanel = new Panel();
             dynamicPanel.Name = "dynamicPanel";
             dynamicPanel.BackColor = Color.LightGray;
-            dynamicPanel.Location = new System.Drawing.Point(500, 100);
+            dynamicPanel.Location = new System.Drawing.Point(100, 100);
             dynamicPanel.Size = new Size(600, 350);
             
             

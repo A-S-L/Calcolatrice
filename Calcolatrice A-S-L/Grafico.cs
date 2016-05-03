@@ -54,7 +54,7 @@ namespace Calcolatrice_A_S_L
         }
 
 
-        private void scrivifunzione(Graphics g, Espressione f)
+        private void scrivifunzione(Graphics g, Espressione f,bool radianti)
         {
 
             var listapunti = new List<List<PointF>> { new List<PointF>() };
@@ -67,7 +67,7 @@ namespace Calcolatrice_A_S_L
             for (float x = -grafico.numerocelle / 2; x < grafico.numerocelle / 2; x += grafico.passo)
 
             {
-                double y = f.applica(x);
+                double y = f.applica(x,radianti);
                 PointF point = puntotrasformato(new PointF(x, (float)y));
 
                 if (double.IsNaN(y))
@@ -184,12 +184,12 @@ namespace Calcolatrice_A_S_L
             }
         }
 
-        public void disegnafunzioni(Graphics g)
+        public void disegnafunzioni(Graphics g,bool radianti)
         {
 
             foreach (Espressione f in _funzioni)
             {
-                scrivifunzione(g, f);
+                scrivifunzione(g, f,radianti);
             }
         }
 
