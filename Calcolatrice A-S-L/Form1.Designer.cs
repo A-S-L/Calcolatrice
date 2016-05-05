@@ -143,25 +143,26 @@
             // 
             this.radioButtonTestoCifra.AutoSize = true;
             this.radioButtonTestoCifra.Checked = true;
+            this.radioButtonTestoCifra.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.radioButtonTestoCifra.Location = new System.Drawing.Point(15, 24);
             this.radioButtonTestoCifra.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonTestoCifra.Name = "radioButtonTestoCifra";
-            this.radioButtonTestoCifra.Size = new System.Drawing.Size(119, 27);
+            this.radioButtonTestoCifra.Size = new System.Drawing.Size(129, 27);
             this.radioButtonTestoCifra.TabIndex = 8;
             this.radioButtonTestoCifra.TabStop = true;
-            this.radioButtonTestoCifra.Text = "Testo-->Cifra";
+            this.radioButtonTestoCifra.Text = "Testo --> Cifra";
             this.radioButtonTestoCifra.UseVisualStyleBackColor = true;
             this.radioButtonTestoCifra.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // radioButtonCifraTesto
             // 
             this.radioButtonCifraTesto.AutoSize = true;
-            this.radioButtonCifraTesto.Location = new System.Drawing.Point(136, 23);
+            this.radioButtonCifraTesto.Location = new System.Drawing.Point(144, 24);
             this.radioButtonCifraTesto.Margin = new System.Windows.Forms.Padding(2);
             this.radioButtonCifraTesto.Name = "radioButtonCifraTesto";
-            this.radioButtonCifraTesto.Size = new System.Drawing.Size(116, 27);
+            this.radioButtonCifraTesto.Size = new System.Drawing.Size(129, 27);
             this.radioButtonCifraTesto.TabIndex = 9;
-            this.radioButtonCifraTesto.Text = "Cifra-->testo";
+            this.radioButtonCifraTesto.Text = "Cifra --> Testo";
             this.radioButtonCifraTesto.UseVisualStyleBackColor = true;
             // 
             // groupBoxAngoli
@@ -173,7 +174,7 @@
             this.groupBoxAngoli.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxAngoli.Name = "groupBoxAngoli";
             this.groupBoxAngoli.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxAngoli.Size = new System.Drawing.Size(264, 65);
+            this.groupBoxAngoli.Size = new System.Drawing.Size(277, 65);
             this.groupBoxAngoli.TabIndex = 10;
             this.groupBoxAngoli.TabStop = false;
             this.groupBoxAngoli.Text = "Angoli";
@@ -187,7 +188,7 @@
             this.groupBoxOpzioni.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxOpzioni.Name = "groupBoxOpzioni";
             this.groupBoxOpzioni.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxOpzioni.Size = new System.Drawing.Size(264, 65);
+            this.groupBoxOpzioni.Size = new System.Drawing.Size(277, 65);
             this.groupBoxOpzioni.TabIndex = 11;
             this.groupBoxOpzioni.TabStop = false;
             this.groupBoxOpzioni.Text = "Opzioni";
