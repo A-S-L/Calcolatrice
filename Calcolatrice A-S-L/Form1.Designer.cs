@@ -59,7 +59,7 @@
             this.textBoxParole.Location = new System.Drawing.Point(8, 89);
             this.textBoxParole.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxParole.Name = "textBoxParole";
-            this.textBoxParole.Size = new System.Drawing.Size(311, 20);
+            this.textBoxParole.Size = new System.Drawing.Size(508, 20);
             this.textBoxParole.TabIndex = 0;
             // 
             // textBoxNumeri
