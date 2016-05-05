@@ -88,15 +88,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="bin\Debug\ico_calc.ico" />
+    <None Include="chiusura.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\schermata.JPG" />
+    <None Include="ico_calc.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\chiusura.ico" />
+    <None Include="schermata.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
