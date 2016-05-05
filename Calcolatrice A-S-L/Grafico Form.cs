@@ -28,7 +28,7 @@ namespace Calcolatrice_A_S_L
             ciao.MinimumSize = new System.Drawing.Size(800, 800);
 
             ciao.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            ciao.Text = "boh";
+            ciao.Text = "Grafico";
             ciao.MouseWheel += new System.Windows.Forms.MouseEventHandler(zoom);
             ciao.ResumeLayout(false);
             ciao.PerformLayout();
