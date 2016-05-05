@@ -250,7 +250,7 @@
             this.ToolStripButtonInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripButtonInfo.Name = "ToolStripButtonInfo";
             this.ToolStripButtonInfo.Size = new System.Drawing.Size(23, 22);
-            this.ToolStripButtonInfo.Text = "&?";
+            this.ToolStripButtonInfo.Text = "Istruzioni";
             this.ToolStripButtonInfo.Click += new System.EventHandler(this.ToolStripButtonInfo_Click);
             // 
             // Form1

@@ -17,7 +17,6 @@ namespace Calcolatrice_A_S_L
         {
             InitializeComponent();
 
-
         }
         bool t_c = true;
 
@@ -253,6 +252,7 @@ namespace Calcolatrice_A_S_L
             Panel dynamicPanel = new Panel();
             dynamicPanel.Name = "dynamicPanel";
             dynamicPanel.BackColor = Color.LightGray;
+            dynamicPanel.BorderStyle = BorderStyle.FixedSingle;            
             dynamicPanel.Location = new System.Drawing.Point(100, 100);
             dynamicPanel.Size = new Size(600, 350);
             
@@ -322,6 +322,7 @@ namespace Calcolatrice_A_S_L
           if(moving)
             {
                 Panel pannello = (Panel)sender;
+               
                 pannello.Left = e.X + pannello.Left - mousegiu.X;
                 pannello.Top = e.Y + pannello.Top - mousegiu.Y;
                 
