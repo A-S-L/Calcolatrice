@@ -291,7 +291,8 @@ namespace Calcolatrice_A_S_L
                 "188 = centoottantotto (con 2 'o')"+"\n"+
                 "numero^2 = numero alla due"+"\n"+
                 "√numero = esponente radice di numero ( due radice di due ) "+"\n"+
-                "6*(2+2) = numero per aperta parentesi numero piu numero chiusa parentesi"+"\n";
+                "6*(2+2) = numero per aperta parentesi numero piu numero chiusa parentesi"+"\n"+
+                "6,2 = numero virgola numero"+"\n";
             richTextBoxInfo.Location = new System.Drawing.Point(20, 50);
             richTextBoxInfo.Size = new Size(500, 100);
             richTextBoxInfo.Font= new Font("Segoe Print", 10);
