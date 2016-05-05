@@ -11,6 +11,7 @@ namespace Calcolatrice_A_S_L
 
         public static Dictionary<string, string> Operatori_diz = new Dictionary<string, string>() {
             { "piu", "+" },
+             { "più", "+" },
             { "meno", "-" },
             { "per", "*" },
             { "diviso", "/" },
