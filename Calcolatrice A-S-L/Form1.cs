@@ -271,7 +271,7 @@ namespace Calcolatrice_A_S_L
             larghezza = dynamicPanel.Size.Width - (ButtonClose.Size.Width);
 
             ButtonClose.Location = new System.Drawing.Point(larghezza, 0);
-            ButtonClose.BackgroundImage = Image.FromFile("chiusura.ico");
+            ButtonClose.BackgroundImage = Properties.Resources.chiusura.ToBitmap();
             ButtonClose.BackgroundImageLayout = ImageLayout.Stretch;
             ButtonClose.BackColor = Color.White;
             ButtonClose.Text = "";
@@ -298,7 +298,7 @@ namespace Calcolatrice_A_S_L
 
             pictureBoxSchermata.Size = new Size(380, 190);
             pictureBoxSchermata.Location = new System.Drawing.Point(20, 60 + richTextBoxInfo.Height);
-            pictureBoxSchermata.BackgroundImage = Image.FromFile("schermata.jpg");
+            pictureBoxSchermata.BackgroundImage = Properties.Resources.schermata;
             pictureBoxSchermata.BackgroundImageLayout = ImageLayout.Stretch;
 
             dynamicPanel.BringToFront();
