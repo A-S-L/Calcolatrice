@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Calcolatrice_A_S_L
 {
@@ -11,6 +12,7 @@ namespace Calcolatrice_A_S_L
         static Operatore[] Simboli =
        {
             new IncognitaX(),
+            new IncognitaY(),
             new Somma(),
             new Sottrazione(),
             new Moltiplicazione(),
@@ -23,9 +25,10 @@ namespace Calcolatrice_A_S_L
             new RadiceQuadrata(),
             new Modulo()
         };
-        static Func<double, double> AnalizzaTermini(string espressione, bool radianti)
+        static Func<double, double,double> AnalizzaTermini(string espressione, bool radianti)
         {
             var Componenti = DividiTermini(espressione, radianti);
+          
             return AnalizzaComponenti(Componenti, radianti);
         }
 
@@ -44,15 +47,17 @@ namespace Calcolatrice_A_S_L
             }
 
         }
-        public static double CalcolaEspressione(string espressione, double x, bool radianti)
+        public static double CalcolaEspressione(string espressione, double x,double y, bool radianti)
         {
-            return AnalizzaTermini(espressione, radianti)(x);
+           
+            return AnalizzaTermini(espressione, radianti)(x,y);
         }
-        static Func<double, double> AnalizzaComponenti(List<Operatore> Componenti, bool radianti)
+        static Func<double, double,double> AnalizzaComponenti(List<Operatore> Componenti, bool radianti)
         {
 
             if (Componenti.Count == 1)
             {
+               
                 if (Componenti[0] is Costante)
                     return (Componenti[0] as Costante).Funzione();
                 else
@@ -72,13 +77,15 @@ namespace Calcolatrice_A_S_L
                         ArgomentoDestra.Add(Componenti[i]);
                     if (simbolo is Sottrazione && ArgomentoSinistra.Count == 0)
                         ArgomentoSinistra.Add(new Numero(0));
+                   
                     if (simbolo is UnTermine)
                         return (simbolo as UnTermine).Funzione(AnalizzaComponenti(ArgomentoDestra, radianti), radianti);
                     if (simbolo is DueTermini)
                         return (simbolo as DueTermini).Funzione(AnalizzaComponenti(ArgomentoSinistra, radianti), AnalizzaComponenti(ArgomentoDestra, radianti));
-
+                   
 
                 }
+               
             }
             throw new ArgumentException("Errore");
         }
@@ -94,6 +101,7 @@ namespace Calcolatrice_A_S_L
 
                 foreach (var simbolo in Simboli)
                 {
+                   
                     if (simbolo.Simbolo.Length > 0 &&
                         indice + simbolo.Simbolo.Length <= espressione.Length &&
                         espressione.Substring(indice, simbolo.Simbolo.Length).Equals(simbolo.Simbolo))
@@ -151,12 +159,14 @@ namespace Calcolatrice_A_S_L
                 double numero;
                 if (Double.TryParse(espressione.Substring(indice, 1), out numero))
                 {
+                   
                     int lunghezza = 2;
                     while ((indice + lunghezza <= espressione.Length &&
                             Double.TryParse(espressione.Substring(indice, lunghezza), out numero)))
                         lunghezza++;
                     lunghezza--;
                     Double.TryParse(espressione.Substring(indice, lunghezza), out numero);
+                  
                     risultato.Add(new Numero(numero));
                     indice += lunghezza;
                     simbolonumerico = true;

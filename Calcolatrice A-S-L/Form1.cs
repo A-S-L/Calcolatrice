@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,9 +27,9 @@ namespace Calcolatrice_A_S_L
             string risultato_lettere = "";
             string risultato_cifre = "";
             if (t_c)
-               textBoxNumeri.Text= esp_testo_numero(textBoxParole.Text,out risultato_cifre);
+                textBoxNumeri.Text = esp_testo_numero(textBoxParole.Text, out risultato_cifre);
             else
-               textBoxParole.Text= esp_numero_testo(textBoxNumeri.Text, out risultato_cifre);
+                textBoxParole.Text = esp_numero_testo(textBoxNumeri.Text, out risultato_cifre);
             string boh = "";
             risultato_lettere = esp_numero_testo(risultato_cifre, out boh);
             textBoxRisultatoParole.Text = risultato_lettere;
@@ -89,17 +90,21 @@ namespace Calcolatrice_A_S_L
             string Espressione = string.Join(" ", risultato);
             textBoxNumeri.Text = Espressione.Replace(" ", "");
             Risultato = "Non valido";
-            if (Parser.EspressioneCorretta(Espressione,deg))
+
+            if (Parser.EspressioneCorretta(Espressione, deg))
             {
                 if (Espressione.Contains("x"))
                 {
-                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?","Calcolatrice",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        Grafico_Form.inizio(Espressione,deg);
+                        bool yy = false;
+                        if (Espressione.Contains("y"))
+                            yy = true;
+                        Grafico_Form.inizio(Espressione, deg, yy);
                         labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
                     }
                 }
-                Risultato=  Parser.CalcolaEspressione(Espressione,0,deg).ToString();
+                Risultato = Parser.CalcolaEspressione(Espressione, 0, 0, deg).ToString();
 
 
             }
@@ -126,10 +131,10 @@ namespace Calcolatrice_A_S_L
                                 risultato[risultato.Length - 1] = Operatori.Operatori_diz.FirstOrDefault(x => x.Value == op.Substring(inizio, num_cifre - inizio)).Key;
                                 inizio = num_cifre;
                             }
-                            if(op.Substring(inizio, num_cifre - inizio)==",")
+                            if (op.Substring(inizio, num_cifre - inizio) == ",")
                             {
                                 Array.Resize(ref risultato, risultato.Length + 1);
-                                risultato[risultato.Length - 1] ="virgola" ;
+                                risultato[risultato.Length - 1] = "virgola";
                                 inizio = num_cifre;
                             }
                             num_cifre++;
@@ -179,23 +184,68 @@ namespace Calcolatrice_A_S_L
                 num = "";
             }
             Risultato = "Non valido";
+            if (numero.Contains("±"))
+            {
+                int numm = numero.Count(x => x == '±');
+
+
+                for (int i = 0; i < Math.Pow(2, numm); i++)
+                {
+                    string test = numero;
+                    string tesst = Convert.ToString(i, 2).PadLeft(Convert.ToString((int)Math.Pow(2, numm) - 1, 2).Length, '0');
+                    for (int j = tesst.Length - 1; j >= 0; j--)
+                    {
+                        if (tesst[j] == '1')
+                        {
+                            StringBuilder bb = new StringBuilder(test);
+                            bb[prendi_Indice(test, '±', j + 1)] = '+';
+                            test = bb.ToString();
+                        }
+                    }
+                    test = test.Replace('±', '-');
+                    MessageBox.Show(test);
+                    MessageBox.Show(Parser.CalcolaEspressione(test, 0, 0, deg).ToString());
+                    test = numero;
+                }
+                return "";
+            }
+
             if (Parser.EspressioneCorretta(numero, deg))
             {
                 if (numero.Contains("x"))
                 {
                     if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        Grafico_Form.inizio(numero, deg);
+                        bool yy = false;
+                        if (numero.Contains("y"))
+                            yy = true;
+                        Grafico_Form.inizio(numero, deg, yy);
                         labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
                     }
                 }
-                Risultato = Parser.CalcolaEspressione(numero, 0, deg).ToString();
+                Risultato = Parser.CalcolaEspressione(numero, 0, 0, deg).ToString();
 
 
             }
-            return  string.Join(" ", risultato);
+            return string.Join(" ", risultato);
 
-           
+
+        }
+        public int prendi_Indice(string s, char t, int n)
+        {
+            int conta = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == t)
+                {
+                    conta++;
+                    if (conta == n)
+                    {
+                        return i;
+                    }
+                }
+            }
+            return -1;
         }
         public bool is_Numero(string numero)
         {
@@ -223,12 +273,12 @@ namespace Calcolatrice_A_S_L
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             t_c = radioButtonTestoCifra.Checked;
-            if(t_c)
+            if (t_c)
             {
                 textBoxParole.ReadOnly = false;
                 textBoxNumeri.ReadOnly = true;
             }
-         else
+            else
             {
                 textBoxParole.ReadOnly = true;
                 textBoxNumeri.ReadOnly = false;
@@ -241,7 +291,7 @@ namespace Calcolatrice_A_S_L
         {
             chiudiPanel = true;
             ToolStripButtonInfo.Enabled = false;
-            
+
             int larghezza = 0;
 
             Button ButtonClose = new Button();
@@ -252,18 +302,18 @@ namespace Calcolatrice_A_S_L
             Panel dynamicPanel = new Panel();
             dynamicPanel.Name = "dynamicPanel";
             dynamicPanel.BackColor = Color.LightGray;
-            dynamicPanel.BorderStyle = BorderStyle.FixedSingle;            
+            dynamicPanel.BorderStyle = BorderStyle.FixedSingle;
             dynamicPanel.Location = new System.Drawing.Point(100, 100);
             dynamicPanel.Size = new Size(600, 350);
-            
-            
+
+
             dynamicPanel.MouseDown += new MouseEventHandler(mouse_down);
             dynamicPanel.MouseUp += new MouseEventHandler(mouse_up);
             dynamicPanel.MouseMove += new MouseEventHandler(mouse_move);
-           
+
             Controls.Add(dynamicPanel);
 
-          
+
             ButtonClose.Name = "ButtonClose";
             ButtonClose.Text = "Chiudi";
             ButtonClose.Size = new Size(20, 20);
@@ -275,27 +325,27 @@ namespace Calcolatrice_A_S_L
             ButtonClose.BackgroundImageLayout = ImageLayout.Stretch;
             ButtonClose.BackColor = Color.White;
             ButtonClose.Text = "";
-            
+
             labelIstruzioni.Name = "labelIstruzioni";
             labelIstruzioni.Text = "Istruzioni di utilizzo:";
-                
-                ;
+
+            ;
             labelIstruzioni.Location = new System.Drawing.Point(20, 10);
             labelIstruzioni.Size = new Size(170, 20);
-            labelIstruzioni.Font = new Font("Segoe Print",10);
+            labelIstruzioni.Font = new Font("Segoe Print", 10);
 
             richTextBoxInfo.ReadOnly = true;
             richTextBoxInfo.Name = "richTextBoxInfo";
             richTextBoxInfo.Text = "esempi / eccezioni / sintassi:" + "\n" +
-                "200027 = duecentomilaventisettte (senza la 'e' tra duecentomila e ventisettte" + "\n"+
-                "188 = centoottantotto (con 2 'o')"+"\n"+
-                "numero^2 = numero alla due"+"\n"+
-                "√numero = esponente radice di numero ( due radice di due ) "+"\n"+
-                "6*(2+2) = numero per aperta parentesi numero piu numero chiusa parentesi"+"\n"+
-                "6,2 = numero virgola numero"+"\n";
+                "200027 = duecentomilaventisettte (senza la 'e' tra duecentomila e ventisettte" + "\n" +
+                "188 = centoottantotto (con 2 'o')" + "\n" +
+                "numero^2 = numero alla due" + "\n" +
+                "√numero = esponente radice di numero ( due radice di due ) " + "\n" +
+                "6*(2+2) = numero per aperta parentesi numero piu numero chiusa parentesi" + "\n" +
+                "6,2 = numero virgola numero" + "\n";
             richTextBoxInfo.Location = new System.Drawing.Point(20, 50);
             richTextBoxInfo.Size = new Size(500, 100);
-            richTextBoxInfo.Font= new Font("Segoe Print", 10);
+            richTextBoxInfo.Font = new Font("Segoe Print", 10);
 
             pictureBoxSchermata.Size = new Size(380, 190);
             pictureBoxSchermata.Location = new System.Drawing.Point(20, 60 + richTextBoxInfo.Height);
@@ -307,7 +357,7 @@ namespace Calcolatrice_A_S_L
             dynamicPanel.Controls.Add(labelIstruzioni);
             dynamicPanel.Controls.Add(richTextBoxInfo);
             dynamicPanel.Controls.Add(pictureBoxSchermata);
-            ButtonClose.MouseClick += new MouseEventHandler((o,s)=>ChiudiPanel(o,s,dynamicPanel));
+            ButtonClose.MouseClick += new MouseEventHandler((o, s) => ChiudiPanel(o, s, dynamicPanel));
         }
 
         Point mousegiu;
@@ -319,13 +369,13 @@ namespace Calcolatrice_A_S_L
         }
         public void mouse_move(object sender, MouseEventArgs e)
         {
-          if(moving)
+            if (moving)
             {
                 Panel pannello = (Panel)sender;
-               
+
                 pannello.Left = e.X + pannello.Left - mousegiu.X;
                 pannello.Top = e.Y + pannello.Top - mousegiu.Y;
-                
+
             }
         }
         public void mouse_up(object sender, MouseEventArgs e)
@@ -333,15 +383,15 @@ namespace Calcolatrice_A_S_L
             moving = false;
         }
 
-        public void ChiudiPanel(object sender, MouseEventArgs e,Panel pannello)
+        public void ChiudiPanel(object sender, MouseEventArgs e, Panel pannello)
         {
-            
+
             if (chiudiPanel)
             {
                 pannello.Hide();
                 ToolStripButtonInfo.Enabled = true;
             }
-                
+
         }
     }
 }

@@ -59,6 +59,7 @@ namespace Calcolatrice_A_S_L
         
         static string funzi = "";
         static bool rad;
+        static bool hay;
         static Point currentPos;
         public static void xxx(object x, PaintEventArgs e)
         {
@@ -69,12 +70,13 @@ namespace Calcolatrice_A_S_L
             currentPos = e.Location;
             Graphics.FromImage(_buffer).DrawString("ciao", new Font(FontFamily.GenericMonospace, 10), Brushes.AliceBlue, e.Location);
         }
-        public static void inizio(string espressione,bool radianti)
+        public static void inizio(string espressione,bool radianti,bool ha_y)
         {
            
                 
                 funzi = espressione;
             rad = radianti;
+            hay = ha_y;
             /*	a = -1;
                 b = 2;
                     funzi = "x^3-x-2";
@@ -116,7 +118,7 @@ namespace Calcolatrice_A_S_L
             _grafico = Graphics.FromImage(_buffer);
             _grafico.SmoothingMode = SmoothingMode.AntiAlias;
 
-            _disegno.disegnafunzioni(_grafico,rad);
+            _disegno.disegnafunzioni(_grafico,rad,hay);
         }
 
         private static void disegnagrafico()

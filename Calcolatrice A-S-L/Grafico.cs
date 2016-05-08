@@ -54,96 +54,141 @@ namespace Calcolatrice_A_S_L
         }
 
 
-        private void scrivifunzione(Graphics g, Espressione f,bool radianti)
+        private void scrivifunzione(Graphics g, Espressione f, bool radianti, bool ha_y)
         {
-
-            var listapunti = new List<List<PointF>> { new List<PointF>() };
-
-            bool provanan = false;
-            double precedente = 0;
-            double x_recedente = 0;
-            bool fatto = false;
-            Form1.risultati_x.Clear();
-            for (float x = -grafico.numerocelle / 2; x < grafico.numerocelle / 2; x += grafico.passo)
-
+            if (!ha_y)
             {
-                double y = f.applica(x,radianti);
-                PointF point = puntotrasformato(new PointF(x, (float)y));
+                var listapunti = new List<List<PointF>> { new List<PointF>() };
 
-                if (double.IsNaN(y))
+                bool provanan = false;
+                double precedente = 0;
+                double x_recedente = 0;
+                bool fatto = false;
+                Form1.risultati_x.Clear();
+                for (float x = -grafico.numerocelle / 2; x < grafico.numerocelle / 2; x += grafico.passo)
+
                 {
-                    if (!provanan)
+                    double y = f.applica(x, 0, radianti);
+                    PointF point = puntotrasformato(new PointF(x, (float)y));
+
+                    if (double.IsNaN(y))
                     {
-                        listapunti.Add(new List<PointF>());
-                        provanan = true;
-                    }
-                }
-
-
-                else if (point.Y > grafico.altezza)
-                {
-                    listapunti[listapunti.Count - 1].Add(new PointF(point.X, grafico.altezza + funzionetest.Width));
-                }
-                else if (point.Y < 0)
-                {
-                    listapunti[listapunti.Count - 1].Add(new PointF(point.X, -funzionetest.Width));
-                }
-                else
-                {
-                    provanan = false;
-                    listapunti[listapunti.Count - 1].Add(point); //
-                }
-                if (fatto)
-                {
-                    if (y == 0 || (precedente < 0 && y > 0) || (precedente > 0 && y < 0))
-                    {
-
-                        if (Form1.risultati_x.Contains(Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString()))
+                        if (!provanan)
                         {
-                            Form1.risultati_x.Remove(Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString());
-                            Form1.risultati_x.Add("±" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)));
+                            listapunti.Add(new List<PointF>());
+                            provanan = true;
                         }
-                        else if (Form1.risultati_x.Contains("-" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString()))
-                        {
-                            Form1.risultati_x.Remove("-" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString());
-                            Form1.risultati_x.Add("±" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)));
-                        }
-                        else if (!Form1.risultati_x.Contains(Math.Round((x + x_recedente) / 2, 2).ToString()))
-                            Form1.risultati_x.Add(Math.Round((x + x_recedente) / 2, 2).ToString());
-
                     }
 
 
-
-
-
-
-                }
-
-                else {
-                    if (y == 0)
+                    else if (point.Y > grafico.altezza)
                     {
-                        if (!Form1.risultati_x.Contains(Math.Round(x, 2).ToString()))
-                            Form1.risultati_x.Add(Math.Round(x, 2).ToString());
+                        listapunti[listapunti.Count - 1].Add(new PointF(point.X, grafico.altezza + funzionetest.Width));
                     }
-                    //±
+                    else if (point.Y < 0)
+                    {
+                        listapunti[listapunti.Count - 1].Add(new PointF(point.X, -funzionetest.Width));
+                    }
+                    else
+                    {
+                        provanan = false;
+                        listapunti[listapunti.Count - 1].Add(point); //
+                    }
+                    if (fatto)
+                    {
+                        if (y == 0 || (precedente < 0 && y > 0) || (precedente > 0 && y < 0))
+                        {
+
+                            if (Form1.risultati_x.Contains(Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString()))
+                            {
+                                Form1.risultati_x.Remove(Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString());
+                                Form1.risultati_x.Add("±" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)));
+                            }
+                            else if (Form1.risultati_x.Contains("-" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString()))
+                            {
+                                Form1.risultati_x.Remove("-" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString());
+                                Form1.risultati_x.Add("±" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)));
+                            }
+                            else if (!Form1.risultati_x.Contains(Math.Round((x + x_recedente) / 2, 2).ToString()))
+                                Form1.risultati_x.Add(Math.Round((x + x_recedente) / 2, 2).ToString());
+
+                        }
+
+
+
+
+
+
+                    }
+
+                    else {
+                        if (y == 0)
+                        {
+                            if (!Form1.risultati_x.Contains(Math.Round(x, 2).ToString()))
+                                Form1.risultati_x.Add(Math.Round(x, 2).ToString());
+                        }
+                        //±
+                    }
+                    fatto = true;
+                    precedente = y;
+                    x_recedente = x;
                 }
-                fatto = true;
-                precedente = y;
-                x_recedente = x;
+
+
+                foreach (var lista in listapunti.Where(list => list.Count > 1))
+                {
+                    g.DrawLines(funzionetest, lista.ToArray());
+                }
+
+
             }
-
-
-            foreach (var lista in listapunti.Where(list => list.Count > 1))
+            else
             {
-                g.DrawLines(funzionetest, lista.ToArray());
+                var listapunti = new List<List<PointF>> { new List<PointF>() };
+                bool provanan = false;
+                using (Pen thin_pen = new Pen(Color.Black, 0))
+                {
+                    // Horizontal comparisons.
+                    for (float x = -grafico.numerocelle / 2; x < grafico.numerocelle / 2; x += grafico.passo)
+                    {
+                        for (float y = -grafico.numerocelle / 2; y < grafico.numerocelle / 2; y += grafico.passo)
+                        {
+                             double last_y = f.applica(x, y, radianti);
+                            if (last_y == 0)
+                            {
+                                // Plot this point.
+                                // g.DrawLine(thin_pen, (float)x, (float)(y - grafico.passo), (float)x, (float)y);
+                                PointF point = puntotrasformato(new PointF((float)x, (float)y));
+                                if (double.IsNaN(y))
+                                {
+                                    if (!provanan)
+                                    {
+                                        listapunti.Add(new List<PointF>());
+                                        provanan = true;
+                                    }
+                                }
+
+
+
+                                else
+                                {
+                                    provanan = false;
+                                    listapunti[listapunti.Count - 1].Add(point); //
+                                }
+
+                            }
+                        } // Horizontal comparisons.
+
+                        // Vertical comparisons.
+
+                    }
+                    foreach (var lista in listapunti.Where(list => list.Count > 1))
+                    {
+                        g.DrawLines(funzionetest, lista.ToArray());
+                    }
+                }
             }
-            //nuovo
-
-
-
-
-        }
+            }
 
         public void disegnagrafico(Graphics g)
         {
@@ -184,12 +229,12 @@ namespace Calcolatrice_A_S_L
             }
         }
 
-        public void disegnafunzioni(Graphics g,bool radianti)
+        public void disegnafunzioni(Graphics g, bool radianti, bool ha_y)
         {
 
             foreach (Espressione f in _funzioni)
             {
-                scrivifunzione(g, f,radianti);
+                scrivifunzione(g, f, radianti, ha_y);
             }
         }
 
