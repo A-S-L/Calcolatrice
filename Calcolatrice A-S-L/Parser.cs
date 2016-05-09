@@ -77,7 +77,10 @@ namespace Calcolatrice_A_S_L
                         ArgomentoDestra.Add(Componenti[i]);
                     if (simbolo is Sottrazione && ArgomentoSinistra.Count == 0)
                         ArgomentoSinistra.Add(new Numero(0));
-                   
+                    if (simbolo is Somma && ArgomentoSinistra.Count == 0)
+                        ArgomentoSinistra.Add(new Numero(0));
+                    if (simbolo is Moltiplicazione && ArgomentoSinistra.Count == 0)
+                        ArgomentoSinistra.Add(new Numero(1));
                     if (simbolo is UnTermine)
                         return (simbolo as UnTermine).Funzione(AnalizzaComponenti(ArgomentoDestra, radianti), radianti);
                     if (simbolo is DueTermini)

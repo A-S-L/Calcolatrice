@@ -100,7 +100,7 @@ namespace Calcolatrice_A_S_L
                         bool yy = false;
                         if (Espressione.Contains("y"))
                             yy = true;
-                        Grafico_Form.inizio(Espressione, deg, yy);
+                        //Grafico_Form.inizio(Espressione, deg, yy);
                         labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
                     }
                 }
@@ -188,7 +188,7 @@ namespace Calcolatrice_A_S_L
             {
                 int numm = numero.Count(x => x == '±');
 
-
+                string[] espressioni= { };
                 for (int i = 0; i < Math.Pow(2, numm); i++)
                 {
                     string test = numero;
@@ -204,9 +204,14 @@ namespace Calcolatrice_A_S_L
                     }
                     test = test.Replace('±', '-');
                     MessageBox.Show(test);
+                    
+
+                    Array.Resize(ref espressioni, espressioni.Length + 1);
+                    espressioni[espressioni.Length - 1] = test;
                     MessageBox.Show(Parser.CalcolaEspressione(test, 0, 0, deg).ToString());
                     test = numero;
                 }
+                Grafico_Form.inizio(espressioni, false, false);
                 return "";
             }
 
@@ -219,7 +224,7 @@ namespace Calcolatrice_A_S_L
                         bool yy = false;
                         if (numero.Contains("y"))
                             yy = true;
-                        Grafico_Form.inizio(numero, deg, yy);
+                       // Grafico_Form.inizio(numero, deg, yy);
                         labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
                     }
                 }
@@ -391,6 +396,11 @@ namespace Calcolatrice_A_S_L
                 pannello.Hide();
                 ToolStripButtonInfo.Enabled = true;
             }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
         }
     }

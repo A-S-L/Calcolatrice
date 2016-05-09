@@ -50,14 +50,14 @@ namespace Calcolatrice_A_S_L
             ciao.Load += new EventHandler(form1_load);
             ciao.MouseMove += new MouseEventHandler(test);
             ciao.Paint += new PaintEventHandler(xxx);
-            
-                _disegno.aggiungifunzione(new Espressione(funzi));
+            foreach(string test in funzi)
+                _disegno.aggiungifunzione(new Espressione(test));
             
             ciao.ShowDialog();
 
         }
         
-        static string funzi = "";
+        static string[] funzi = { };
         static bool rad;
         static bool hay;
         static Point currentPos;
@@ -70,11 +70,11 @@ namespace Calcolatrice_A_S_L
             currentPos = e.Location;
             Graphics.FromImage(_buffer).DrawString("ciao", new Font(FontFamily.GenericMonospace, 10), Brushes.AliceBlue, e.Location);
         }
-        public static void inizio(string espressione,bool radianti,bool ha_y)
+        public static void inizio(string[] espressioni,bool radianti,bool ha_y)
         {
            
                 
-                funzi = espressione;
+                funzi = espressioni;
             rad = radianti;
             hay = ha_y;
             /*	a = -1;
