@@ -24,6 +24,7 @@ namespace Calcolatrice_A_S_L
         public static List<string> risultati_x = new List<string>();
         private void button1_Click(object sender, EventArgs e)
         {
+            textBoxRisultatoNumeri.Clear();
             string risultato_lettere = "";
             string risultato_cifre = "";
             if (t_c)
@@ -33,7 +34,8 @@ namespace Calcolatrice_A_S_L
             string boh = "";
             risultato_lettere = esp_numero_testo(risultato_cifre, out boh);
             textBoxRisultatoParole.Text = risultato_lettere;
-            textBoxRisultatoNumeri.Text = risultato_cifre;
+           
+           // textBoxRisultatoNumeri.Text = risultato_cifre;
         }
         public string esp_testo_numero(string testo, out string Risultato)
         {
@@ -203,12 +205,22 @@ namespace Calcolatrice_A_S_L
                         }
                     }
                     test = test.Replace('±', '-');
-                    MessageBox.Show(test);
+                    if (Parser.EspressioneCorretta(test,false))
+                    {
+                        textBoxRisultatoNumeri.Text += test + " = " + Parser.CalcolaEspressione(test, 0, 0, false).ToString()+"\r\n";
+                    }
+                    else
+                    {
+                        textBoxRisultatoNumeri.Text += test + " = Non valido\r\n";
+                    }
+                   
+                   
+                    //MessageBox.Show(test);
                     
 
                     Array.Resize(ref espressioni, espressioni.Length + 1);
                     espressioni[espressioni.Length - 1] = test;
-                    MessageBox.Show(Parser.CalcolaEspressione(test, 0, 0, deg).ToString());
+                   // MessageBox.Show(Parser.CalcolaEspressione(test, 0, 0, deg).ToString());
                     test = numero;
                 }
                 Grafico_Form.inizio(espressioni, false, false);

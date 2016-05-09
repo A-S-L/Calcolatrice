@@ -146,49 +146,16 @@ namespace Calcolatrice_A_S_L
             {
                 var listapunti = new List<List<PointF>> { new List<PointF>() };
                 bool provanan = false;
-                using (Pen thin_pen = new Pen(Color.Black, 0))
+
+
+                //da vedere
+                foreach (var lista in listapunti.Where(list => list.Count > 1))
                 {
-                    // Horizontal comparisons.
-                    for (float x = -grafico.numerocelle / 2; x < grafico.numerocelle / 2; x += grafico.passo)
-                    {
-                        for (float y = -grafico.numerocelle / 2; y < grafico.numerocelle / 2; y += grafico.passo)
-                        {
-                             double last_y = f.applica(x, y, radianti);
-                            if (last_y == 0)
-                            {
-                                // Plot this point.
-                                // g.DrawLine(thin_pen, (float)x, (float)(y - grafico.passo), (float)x, (float)y);
-                                PointF point = puntotrasformato(new PointF((float)x, (float)y));
-                                if (double.IsNaN(y))
-                                {
-                                    if (!provanan)
-                                    {
-                                        listapunti.Add(new List<PointF>());
-                                        provanan = true;
-                                    }
-                                }
-
-
-
-                                else
-                                {
-                                    provanan = false;
-                                    listapunti[listapunti.Count - 1].Add(point); //
-                                }
-
-                            }
-                        } // Horizontal comparisons.
-
-                        // Vertical comparisons.
-
-                    }
-                    foreach (var lista in listapunti.Where(list => list.Count > 1))
-                    {
-                        g.DrawLines(funzionetest, lista.ToArray());
-                    }
+                    g.DrawLines(funzionetest, lista.ToArray());
                 }
             }
-            }
+
+        }
 
         public void disegnagrafico(Graphics g)
         {
