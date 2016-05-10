@@ -32,17 +32,16 @@ namespace Calcolatrice_A_S_L
             return AnalizzaComponenti(Componenti, radianti);
         }
 
-        public static bool EspressioneCorretta(string espressione, bool radianti)
+        public static bool EspressioneCorretta(string espressione, bool radianti,out double Risultato,double x=0, double y=0)
         {
             try
             {
-                var Componenti = DividiTermini(espressione, radianti);
-                AnalizzaComponenti(Componenti, radianti);
+                Risultato = CalcolaEspressione(espressione, x, y, radianti);
                 return true;
             }
             catch (Exception)
             {
-
+                Risultato = 0;
                 return false;
             }
 

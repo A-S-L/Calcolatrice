@@ -18,26 +18,191 @@ namespace Calcolatrice_A_S_L
         {
             InitializeComponent();
 
+
         }
         bool t_c = true;
 
         public static List<string> risultati_x = new List<string>();
         private void button1_Click(object sender, EventArgs e)
         {
+            risultati_x.Clear();
+            Grafico_Form.ciao.Close();
             textBoxRisultatoNumeri.Clear();
+            textBoxRisultatoParole.Clear();
             string risultato_lettere = "";
             string risultato_cifre = "";
             if (t_c)
-                textBoxNumeri.Text = esp_testo_numero(textBoxParole.Text, out risultato_cifre);
+                calcola_da_testo();
             else
-                textBoxParole.Text = esp_numero_testo(textBoxNumeri.Text, out risultato_cifre);
-            string boh = "";
-            risultato_lettere = esp_numero_testo(risultato_cifre, out boh);
-            textBoxRisultatoParole.Text = risultato_lettere;
-           
-           // textBoxRisultatoNumeri.Text = risultato_cifre;
+                calcola_da_numero();
+
         }
-        public string esp_testo_numero(string testo, out string Risultato)
+        public void calcola_da_numero()
+        {
+          
+            string numero = textBoxNumeri.Text;
+            string testo = esp_numero_testo(numero);
+            textBoxParole.Text = testo;
+            if (numero.Contains("±"))
+            {
+                int numm = numero.Count(x => x == '±');
+
+                string[] espressioni = { };
+                for (int i = 0; i < Math.Pow(2, numm); i++)
+                {
+                    string test = numero;
+                    string tesst = Convert.ToString(i, 2).PadLeft(Convert.ToString((int)Math.Pow(2, numm) - 1, 2).Length, '0');
+                    for (int j = tesst.Length - 1; j >= 0; j--)
+                    {
+                        if (tesst[j] == '1')
+                        {
+                            StringBuilder bb = new StringBuilder(test);
+                            bb[prendi_Indice(test, '±', j + 1)] = '+';
+                            test = bb.ToString();
+                        }
+                    }
+                    test = test.Replace('±', '-');
+                    double risultato;
+                    if (Parser.EspressioneCorretta(test, false,out risultato))
+                    {
+                        textBoxRisultatoNumeri.Text += test + " = " + risultato.ToString() + "\r\n";
+                      
+                        textBoxRisultatoParole.Text += esp_numero_testo(test) + " = " + esp_numero_testo(risultato.ToString()) + "\r\n";
+                    }
+                    else
+                    {
+                        textBoxRisultatoNumeri.Text += test + " = Non valido\r\n";
+                    }
+
+
+                    //MessageBox.Show(test);
+
+
+                    Array.Resize(ref espressioni, espressioni.Length + 1);
+                    espressioni[espressioni.Length - 1] = test;
+                    // MessageBox.Show(Parser.CalcolaEspressione(test, 0, 0, deg).ToString());
+                    test = numero;
+                }
+
+                if(numero.Contains("x"))
+                {
+                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        bool yy = false;
+                        if (numero.Contains("y"))
+                            yy = true;
+                        Grafico_Form.inizio(espressioni, deg, yy);
+                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                    }
+                }
+                return;
+               
+            }
+            double Risultato;
+            if (Parser.EspressioneCorretta(numero, deg,out Risultato))
+            {
+                textBoxRisultatoNumeri.Text += numero + " = " + Risultato.ToString() + "\r\n";
+
+                textBoxRisultatoParole.Text += testo + " = " + esp_numero_testo(Risultato.ToString()) + "\r\n";
+                if (numero.Contains("x"))
+                {
+                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        bool yy = false;
+                        if (numero.Contains("y"))
+                            yy = true;
+                         Grafico_Form.inizio(new string[] { numero }, deg, yy);
+                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                    }
+                }
+
+                
+
+            }
+        }
+        public void calcola_da_testo()
+        {
+            string testo = textBoxParole.Text;
+            string numero = esp_testo_numero(testo);
+            textBoxNumeri.Text = numero;
+            if (testo.Contains("piuomeno"))
+            {
+                int numm = Regex.Matches(testo, "piuomeno").Count;
+
+                string[] espressioni = { };
+                for (int i = 0; i < Math.Pow(2, numm); i++)
+                {
+                    string test = testo;
+                    string tesst = Convert.ToString(i, 2).PadLeft(Convert.ToString((int)Math.Pow(2, numm) - 1, 2).Length, '0');
+                    for (int j = tesst.Length - 1; j >= 0; j--)
+                    {
+                        if (tesst[j] == '1')
+                        {
+                            test = sostituisci(test, j + 1, "piuomeno", "piu");
+                        }
+                    }
+                    string riss;
+                    test = test.Replace("piuomeno", "meno");
+                    double risultato;
+                    if (Parser.EspressioneCorretta(esp_testo_numero(test), false,out risultato))
+                    {
+                       
+                        textBoxRisultatoParole.Text += test + " = " + esp_numero_testo(risultato.ToString()) + "\r\n";
+
+                        textBoxRisultatoNumeri.Text += esp_testo_numero(test) + " = " + risultato.ToString() + "\r\n";
+                    }
+                    else
+                    {
+                        textBoxRisultatoParole.Text += test + " = Non valido\r\n";
+                    }
+
+
+                    //MessageBox.Show(test);
+
+
+                    Array.Resize(ref espressioni, espressioni.Length + 1);
+                    espressioni[espressioni.Length - 1] = test;
+                    // MessageBox.Show(Parser.CalcolaEspressione(test, 0, 0, deg).ToString());
+                    test = testo;
+                }
+                if (testo.Contains("x"))
+                {
+                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        bool yy = false;
+                        if (testo.Contains("y"))
+                            yy = true;
+                        Grafico_Form.inizio(espressioni, deg, yy);
+                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                    }
+                }
+                return;
+
+            }
+            double Risultato;
+           if (Parser.EspressioneCorretta(numero, deg,out Risultato))
+            {
+             
+                textBoxRisultatoNumeri.Text = esp_testo_numero(testo) + " = " + Risultato;
+                textBoxRisultatoParole.Text = testo + " = " + esp_numero_testo(Risultato.ToString()); 
+                if (testo.Contains("x"))
+                {
+                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        bool yy = false;
+                        if (testo.Contains("y"))
+                            yy = true;
+                        Grafico_Form.inizio(new string[] { numero }, deg, yy);
+                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                    }
+                }
+
+
+              
+            }
+           
+        }
+        public string esp_testo_numero(string testo)
         {
             deg = radioButtonRadianti.Checked;
             string[] termini = testo.ToLower().Split(' ');
@@ -62,14 +227,6 @@ namespace Calcolatrice_A_S_L
                         risultato[risultato.Length - 1] = Operatori.Operatori_diz[precedente + " " + termine];
                     }
                 }
-                /*else if (termine == "quadrata")
-                {
-                    if (precedente == "radice" )
-                    {
-                        Array.Resize(ref risultato, risultato.Length + 1);
-                        risultato[risultato.Length - 1] = Operatori.Operatori_diz[precedente + " " + termine];
-                    }
-                }*/
                 else if (termine == "virgola")
                 {
                     risultato[risultato.Length - 1] += ",";
@@ -89,30 +246,29 @@ namespace Calcolatrice_A_S_L
 
                 precedente = termine;
             }
-            string Espressione = string.Join(" ", risultato);
-            textBoxNumeri.Text = Espressione.Replace(" ", "");
-            Risultato = "Non valido";
 
-            if (Parser.EspressioneCorretta(Espressione, deg))
+
+            return string.Join(" ", risultato);
+        }
+        string sostituisci(string stringa, int numero, string cerca, string rimpiazza)
+        {
+            string[] test = stringa.Split(' ');
+            int conto = 0;
+            for (int i = 0; i < test.Length; i++)
             {
-                if (Espressione.Contains("x"))
+                if (test[i] == cerca)
                 {
-                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    conto++;
+                    if (conto == numero)
                     {
-                        bool yy = false;
-                        if (Espressione.Contains("y"))
-                            yy = true;
-                        //Grafico_Form.inizio(Espressione, deg, yy);
-                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                        test[i] = rimpiazza;
+                        return string.Join(" ", test);
                     }
                 }
-                Risultato = Parser.CalcolaEspressione(Espressione, 0, 0, deg).ToString();
-
-
             }
-            return Espressione;
+            return stringa;
         }
-        public string esp_numero_testo(string numero, out string Risultato)
+        public string esp_numero_testo(string numero)
         {
             string num = "";
             string op = "";
@@ -185,65 +341,7 @@ namespace Calcolatrice_A_S_L
 
                 num = "";
             }
-            Risultato = "Non valido";
-            if (numero.Contains("±"))
-            {
-                int numm = numero.Count(x => x == '±');
-
-                string[] espressioni= { };
-                for (int i = 0; i < Math.Pow(2, numm); i++)
-                {
-                    string test = numero;
-                    string tesst = Convert.ToString(i, 2).PadLeft(Convert.ToString((int)Math.Pow(2, numm) - 1, 2).Length, '0');
-                    for (int j = tesst.Length - 1; j >= 0; j--)
-                    {
-                        if (tesst[j] == '1')
-                        {
-                            StringBuilder bb = new StringBuilder(test);
-                            bb[prendi_Indice(test, '±', j + 1)] = '+';
-                            test = bb.ToString();
-                        }
-                    }
-                    test = test.Replace('±', '-');
-                    if (Parser.EspressioneCorretta(test,false))
-                    {
-                        textBoxRisultatoNumeri.Text += test + " = " + Parser.CalcolaEspressione(test, 0, 0, false).ToString()+"\r\n";
-                    }
-                    else
-                    {
-                        textBoxRisultatoNumeri.Text += test + " = Non valido\r\n";
-                    }
-                   
-                   
-                    //MessageBox.Show(test);
-                    
-
-                    Array.Resize(ref espressioni, espressioni.Length + 1);
-                    espressioni[espressioni.Length - 1] = test;
-                   // MessageBox.Show(Parser.CalcolaEspressione(test, 0, 0, deg).ToString());
-                    test = numero;
-                }
-                Grafico_Form.inizio(espressioni, false, false);
-                return "";
-            }
-
-            if (Parser.EspressioneCorretta(numero, deg))
-            {
-                if (numero.Contains("x"))
-                {
-                    if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                    {
-                        bool yy = false;
-                        if (numero.Contains("y"))
-                            yy = true;
-                       // Grafico_Form.inizio(numero, deg, yy);
-                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
-                    }
-                }
-                Risultato = Parser.CalcolaEspressione(numero, 0, 0, deg).ToString();
-
-
-            }
+            
             return string.Join(" ", risultato);
 
 

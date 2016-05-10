@@ -64,7 +64,7 @@ namespace Calcolatrice_A_S_L
                 double precedente = 0;
                 double x_recedente = 0;
                 bool fatto = false;
-                Form1.risultati_x.Clear();
+                //Form1.risultati_x.Clear();
                 for (float x = -grafico.numerocelle / 2; x < grafico.numerocelle / 2; x += grafico.passo)
 
                 {

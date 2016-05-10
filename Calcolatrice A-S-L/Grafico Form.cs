@@ -19,7 +19,7 @@ namespace Calcolatrice_A_S_L
         public static void inizializzazione()
         {
 
-
+            ciao = new System.Windows.Forms.Form();
             ciao.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             ciao.ClientSize = new System.Drawing.Size(784, 761);
 

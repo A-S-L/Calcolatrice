@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Calcolatrice_A_S_L
 {
@@ -109,10 +110,8 @@ namespace Calcolatrice_A_S_L
                         break;
                 }
                 numlen = numstring.Length;
-                // MessageBox.Show("Numlen: " & numlen & "  subnumero: " & numstring)
-                while ((((sezione + 1)
-                            * 3)
-                            <= numlen))
+               
+                while ((((sezione + 1) * 3)<= numlen))
                 {
                     subnumerostring = numstring.Substring((numlen
                                     - ((sezione + 1)
@@ -121,8 +120,7 @@ namespace Calcolatrice_A_S_L
                     cifra[0] = subnumerostring.Substring(0, 1);
                     cifra[1] = subnumerostring.Substring(1, 1);
                     cifra[2] = subnumerostring.Substring(2, 1);
-                    // MessageBox.Show ("Sezione numero: " & sezione & ", cifre della sezione: " & cifra(0) & cifra(1) & cifra(2))
-                    if ((subnumero != 0))
+                     if ((subnumero != 0))
                     {
                         prime2cifre = ((int.Parse(cifra[1]) * 10)
                                     + int.Parse(cifra[2]));
@@ -219,6 +217,7 @@ namespace Calcolatrice_A_S_L
         }
         public static long testo_a_cifra(string Testo)
         {
+
             const long grandezza_arr = 51;
             string[] testo = new string[grandezza_arr + 1];
 
@@ -498,9 +497,15 @@ namespace Calcolatrice_A_S_L
             }
 
             r = (r + n);
-            if(r!=0)
-            return r;
+
+
+            if (r != 0)
+                return r;
             return -1;
         }
+     
+
+      
+
     }
 }
