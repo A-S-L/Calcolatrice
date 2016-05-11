@@ -1,6 +1,6 @@
 ﻿namespace Calcolatrice_A_S_L
 {
-    partial class Form1
+    partial class Calcolatrice
     {
         /// <summary>
         /// Variabile di progettazione necessaria.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Calcolatrice));
             this.textBoxParole = new System.Windows.Forms.TextBox();
             this.textBoxNumeri = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -260,7 +260,7 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(119, 29);
             this.toolStripButton1.Text = "Impostazioni";
-            this.toolStripButton1.Visible = false;
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // ToolStripButtonInfo
             // 
@@ -284,7 +284,7 @@
             this.label2.Text = "Calcolatrice Testuale";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // Form1
+            // Calcolatrice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -305,7 +305,7 @@
             this.Controls.Add(this.textBoxParole);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "Calcolatrice";
             this.Text = "Calcolatrice in lingua Italiana";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBoxAngoli.ResumeLayout(false);

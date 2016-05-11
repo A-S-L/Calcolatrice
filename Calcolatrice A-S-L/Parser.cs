@@ -34,6 +34,7 @@ namespace Calcolatrice_A_S_L
 
         public static bool EspressioneCorretta(string espressione, bool radianti,out double Risultato,double x=0, double y=0)
         {
+            
             try
             {
                 Risultato = CalcolaEspressione(espressione, x, y, radianti);

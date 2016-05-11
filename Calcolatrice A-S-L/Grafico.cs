@@ -99,18 +99,18 @@ namespace Calcolatrice_A_S_L
                         if (y == 0 || (precedente < 0 && y > 0) || (precedente > 0 && y < 0))
                         {
 
-                            if (Form1.risultati_x.Contains(Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString()))
+                            if (Calcolatrice.risultati_x.Contains(Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString()))
                             {
-                                Form1.risultati_x.Remove(Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString());
-                                Form1.risultati_x.Add("±" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)));
+                                Calcolatrice.risultati_x.Remove(Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString());
+                                Calcolatrice.risultati_x.Add("±" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)));
                             }
-                            else if (Form1.risultati_x.Contains("-" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString()))
+                            else if (Calcolatrice.risultati_x.Contains("-" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString()))
                             {
-                                Form1.risultati_x.Remove("-" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString());
-                                Form1.risultati_x.Add("±" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)));
+                                Calcolatrice.risultati_x.Remove("-" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)).ToString());
+                                Calcolatrice.risultati_x.Add("±" + Math.Abs(Math.Round((x + x_recedente) / 2, 2)));
                             }
-                            else if (!Form1.risultati_x.Contains(Math.Round((x + x_recedente) / 2, 2).ToString()))
-                                Form1.risultati_x.Add(Math.Round((x + x_recedente) / 2, 2).ToString());
+                            else if (!Calcolatrice.risultati_x.Contains(Math.Round((x + x_recedente) / 2, 2).ToString()))
+                                Calcolatrice.risultati_x.Add(Math.Round((x + x_recedente) / 2, 2).ToString());
 
                         }
 
@@ -124,8 +124,8 @@ namespace Calcolatrice_A_S_L
                     else {
                         if (y == 0)
                         {
-                            if (!Form1.risultati_x.Contains(Math.Round(x, 2).ToString()))
-                                Form1.risultati_x.Add(Math.Round(x, 2).ToString());
+                            if (!Calcolatrice.risultati_x.Contains(Math.Round(x, 2).ToString()))
+                                Calcolatrice.risultati_x.Add(Math.Round(x, 2).ToString());
                         }
                         //±
                     }

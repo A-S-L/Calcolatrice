@@ -49,22 +49,40 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Espressione.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="Calcolatrice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Calcolatrice.Designer.cs">
+      <DependentUpon>Calcolatrice.cs</DependentUpon>
     </Compile>
     <Compile Include="Grafico Form.cs" />
     <Compile Include="Grafico.cs" />
     <Compile Include="Grafico_conf.cs" />
+    <Compile Include="Impostazioni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Impostazioni.Designer.cs">
+      <DependentUpon>Impostazioni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Istruzioni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Istruzioni.Designer.cs">
+      <DependentUpon>Istruzioni.cs</DependentUpon>
+    </Compile>
     <Compile Include="Numeri.cs" />
     <Compile Include="Operatori.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Calcolatrice.resx">
+      <DependentUpon>Calcolatrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Impostazioni.resx">
+      <DependentUpon>Impostazioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Istruzioni.resx">
+      <DependentUpon>Istruzioni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

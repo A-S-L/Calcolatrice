@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace Calcolatrice_A_S_L
 {
-    public partial class Form1 : Form
+    public partial class Calcolatrice : Form
     {
         public static bool deg = true;
-        public Form1()
+        public Calcolatrice()
         {
             InitializeComponent();
 
@@ -404,7 +404,9 @@ namespace Calcolatrice_A_S_L
 
         private void ToolStripButtonInfo_Click(object sender, EventArgs e)
         {
-            chiudiPanel = true;
+            Istruzioni ist = new Istruzioni();
+            ist.Show();
+           /* chiudiPanel = true;
             ToolStripButtonInfo.Enabled = false;
 
             int larghezza = 0;
@@ -472,10 +474,10 @@ namespace Calcolatrice_A_S_L
             dynamicPanel.Controls.Add(labelIstruzioni);
             dynamicPanel.Controls.Add(richTextBoxInfo);
             dynamicPanel.Controls.Add(pictureBoxSchermata);
-            ButtonClose.MouseClick += new MouseEventHandler((o, s) => ChiudiPanel(o, s, dynamicPanel));
+            ButtonClose.MouseClick += new MouseEventHandler((o, s) => ChiudiPanel(o, s, dynamicPanel));*/
         }
 
-        Point mousegiu;
+    /*    Point mousegiu;
         bool moving = false;
         public void mouse_down(object sender, MouseEventArgs e)
         {
@@ -507,9 +509,14 @@ namespace Calcolatrice_A_S_L
                 ToolStripButtonInfo.Enabled = true;
             }
 
-        }
+        }*/
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
         {
 
         }

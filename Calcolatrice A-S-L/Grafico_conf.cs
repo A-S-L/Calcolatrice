@@ -24,7 +24,7 @@ namespace Calcolatrice_A_S_L
             _wlarghezza = dimensione.Width;
             _altezza = dimensione.Height;
             _centro = new PointF((float)dimensione.Width / 2, (float)dimensione.Height / 2);
-            passo = 0.001F;
+            passo = Calcolatrice_A_S_L.Properties.Settings.Default.precisione;
         }
 
         public PointF centro

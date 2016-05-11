@@ -22,5 +22,53 @@ namespace Calcolatrice_A_S_L.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double x {
+            get {
+                return ((double)(this["x"]));
+            }
+            set {
+                this["x"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double y {
+            get {
+                return ((double)(this["y"]));
+            }
+            set {
+                this["y"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.001")]
+        public float precisione {
+            get {
+                return ((float)(this["precisione"]));
+            }
+            set {
+                this["precisione"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("14")]
+        public int decimali {
+            get {
+                return ((int)(this["decimali"]));
+            }
+            set {
+                this["decimali"] = value;
+            }
+        }
     }
 }
