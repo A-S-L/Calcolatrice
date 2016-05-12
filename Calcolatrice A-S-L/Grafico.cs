@@ -231,7 +231,7 @@ namespace Calcolatrice_A_S_L
         public void rimuovifunzioni()
         {
             if (_funzioni.Count > 0)
-                _funzioni.Clear();
+                _funzioni.Clear(); 
         }
     }
 }

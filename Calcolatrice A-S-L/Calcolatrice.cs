@@ -25,6 +25,7 @@ namespace Calcolatrice_A_S_L
         public static List<string> risultati_x = new List<string>();
         private void button1_Click(object sender, EventArgs e)
         {
+            
             risultati_x.Clear();
             Grafico_Form.ciao.Close();
             textBoxRisultatoNumeri.Clear();
@@ -35,6 +36,9 @@ namespace Calcolatrice_A_S_L
                 calcola_da_testo();
             else
                 calcola_da_numero();
+
+            textBoxRisultatoParole.BackColor = Color.LightGreen;
+            textBoxRisultatoNumeri.BackColor = Color.LightGreen;
 
         }
         public void calcola_da_numero()
@@ -92,7 +96,7 @@ namespace Calcolatrice_A_S_L
                         if (numero.Contains("y"))
                             yy = true;
                         Grafico_Form.inizio(espressioni, deg, yy);
-                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray())+"\n";
                     }
                 }
                 return;
@@ -112,7 +116,7 @@ namespace Calcolatrice_A_S_L
                         if (numero.Contains("y"))
                             yy = true;
                          Grafico_Form.inizio(new string[] { numero }, deg, yy);
-                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray())+"\n";
                     }
                 }
 
@@ -173,7 +177,7 @@ namespace Calcolatrice_A_S_L
                         if (testo.Contains("y"))
                             yy = true;
                         Grafico_Form.inizio(espressioni, deg, yy);
-                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray())+"\n";
                     }
                 }
                 return;
@@ -193,7 +197,7 @@ namespace Calcolatrice_A_S_L
                         if (testo.Contains("y"))
                             yy = true;
                         Grafico_Form.inizio(new string[] { numero }, deg, yy);
-                        labelX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray());
+                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray())+ "\n";
                     }
                 }
 
@@ -392,11 +396,15 @@ namespace Calcolatrice_A_S_L
             {
                 textBoxParole.ReadOnly = false;
                 textBoxNumeri.ReadOnly = true;
+                textBoxParole.BackColor = Color.FromKnownColor(KnownColor.Control);
+                textBoxParole.Focus();
             }
             else
             {
                 textBoxParole.ReadOnly = true;
-                textBoxNumeri.ReadOnly = false;
+                textBoxNumeri.ReadOnly = false;              
+                textBoxNumeri.BackColor = Color.FromKnownColor( KnownColor.Control);
+                textBoxNumeri.Focus();
             }
         }
 
@@ -451,6 +459,38 @@ namespace Calcolatrice_A_S_L
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        
+
+        private void textBoxParole_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Enter)
+            {
+                button1_Click(null, null);
+                textBoxRisultatoParole.BackColor = Color.LightGreen;
+                textBoxRisultatoNumeri.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                textBoxRisultatoParole.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
+                textBoxRisultatoNumeri.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
+            }
+        }
+
+        private void textBoxNumeri_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(null, null);
+                textBoxRisultatoParole.BackColor = Color.LightGreen;
+                textBoxRisultatoNumeri.BackColor = Color.LightGreen;
+            }
+            else
+            {
+                textBoxRisultatoParole.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
+                textBoxRisultatoNumeri.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
+            }
         }
     }
 }
