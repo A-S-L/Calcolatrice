@@ -61,7 +61,7 @@ namespace Calcolatrice_A_S_L.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("14")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public int decimali {
             get {
                 return ((int)(this["decimali"]));

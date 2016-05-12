@@ -453,12 +453,13 @@ namespace Calcolatrice_A_S_L
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+       
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-
+            Impostazioni imp = new Impostazioni();
+            imp.ShowDialog();
         }
 
         
@@ -491,6 +492,11 @@ namespace Calcolatrice_A_S_L
                 textBoxRisultatoParole.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
                 textBoxRisultatoNumeri.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
             }
+        }
+
+        private void richTextBoxX_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

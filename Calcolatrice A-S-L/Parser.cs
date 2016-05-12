@@ -32,12 +32,12 @@ namespace Calcolatrice_A_S_L
             return AnalizzaComponenti(Componenti, radianti);
         }
 
-        public static bool EspressioneCorretta(string espressione, bool radianti,out double Risultato,double x=0, double y=0)
+        public static bool EspressioneCorretta(string espressione, bool radianti,out double Risultato,double x, double y)
         {
             
             try
             {
-                Risultato = CalcolaEspressione(espressione, x, y, radianti);
+                Risultato =Math.Round( CalcolaEspressione(espressione, x, y, radianti),Properties.Settings.Default.decimali);
                 return true;
             }
             catch (Exception)
@@ -45,6 +45,12 @@ namespace Calcolatrice_A_S_L
                 Risultato = 0;
                 return false;
             }
+
+        }
+        public static bool EspressioneCorretta(string espressione, bool radianti, out double Risultato)
+        {
+
+            return EspressioneCorretta(espressione, radianti, out Risultato, Properties.Settings.Default.x, Properties.Settings.Default.y);
 
         }
         public static double CalcolaEspressione(string espressione, double x,double y, bool radianti)

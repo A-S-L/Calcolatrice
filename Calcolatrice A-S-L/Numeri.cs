@@ -9,6 +9,407 @@ namespace Calcolatrice_A_S_L
 {
     class Numeri
     {
+        static bool cento = false;
+        static int indCento = -1;
+        static bool mille = false;
+        static int indMille = -1;
+        static bool mila = false;
+        static int indMila = -1;
+        static bool milione = false;
+        static int indMilione = -1;
+        static bool milioni = false;
+        static int indMilioni = -1;
+        static bool miliardo = false;
+        static int indMiliardo = -1;
+        static bool bilione= false;
+        static int indBilione = -1;
+        static bool miliardi = false;
+        static int indMiliardi = -1;
+        static bool bilioni = false;
+        static int indBilioni = -1;
+        public static bool parolaIniziale(int indiceParolaChiave)
+        {
+            bool risultato = false;
+            if (indiceParolaChiave == 0 && (indiceParolaChiave <= indCento || indCento == -1) && (indiceParolaChiave <= indMille || indMille == -1) && (indiceParolaChiave <= indMila || indMila == -1) && (indiceParolaChiave <= indMilione || indMilione == -1) && (indiceParolaChiave <= indMilioni || indMilioni == -1) && (indiceParolaChiave <= indMiliardi|| indMiliardi == -1) && (indiceParolaChiave <= indMiliardo || indMiliardo == -1) && (indiceParolaChiave <= indBilione || indBilione == -1) && (indiceParolaChiave <= indBilioni || indBilioni == -1) )
+                risultato = true;
+            return risultato;
+        }
+        public static bool primaParola(int indiceParolaChiave)
+        {
+            bool risultato = false;
+            if (indiceParolaChiave !=-1 && (indiceParolaChiave <= indCento || indCento == -1) && (indiceParolaChiave <= indMille || indMille == -1) && (indiceParolaChiave <= indMila || indMila == -1) && (indiceParolaChiave <= indMilione || indMilione == -1) && (indiceParolaChiave <= indMilioni || indMilioni == -1) && (indiceParolaChiave <= indMiliardi || indMiliardi == -1) && (indiceParolaChiave <= indMiliardo || indMiliardo == -1) && (indiceParolaChiave <= indBilione || indBilione == -1) && (indiceParolaChiave <= indBilioni || indBilioni == -1) )
+                risultato = true;
+            return risultato;
+        }
+        public static int cercaNumBase(string parola)
+        {
+            int risultato = -1;
+            for (int z = 0; z < 100; z++)
+                if (arrNumeri[z] == parola)
+                {
+                    risultato = z;
+                    break;
+                }
+            return risultato;
+        }
+        static string[] arrNumeri = new string[] { "zero", "uno", "due", "tre", "quattro", "cinque", "sei", "sette", "otto", "nove", "dieci", "undici", "dodici", "tredici", "quattordici", "quindici", "sedici", "diciassette", "diciotto", "diciannove", "venti", "ventuno", "ventidue", "ventitre", "ventiquattro", "venticinque", "ventisei", "ventisette", "ventotto", "ventinove", "trenta", "trentuno", "trentadue", "trentatre", "trentaquattro", "trentacinque", "trentasei", "trentasette", "trentotto", "trentanove", "quaranta", "quarantuno", "quarantadue", "quarantatre", "quarantaquattro", "quarantacinque", "quarantasei", "quarantasette", "quarantotto", "quarantanove", "cinquanta", "cinquantuno", "cinquantadue", "cinquantatre", "cinquantaquattro", "cinquantacinque", "cinquantasei", "cinquantasette", "cinquantotto", "cinquantanove", "sessanta", "sessantuno", "sessantadue", "sessantatre", "sessantaquattro", "sessantacinque", "sessantasei", "sessantasette", "sessantotto", "sessantanove", "settanta", "settantuno", "settantadue", "settantatre", "settantaquattro", "settantacinque", "settantasei", "settantasette", "settantotto", "settantanove", "ottanta", "ottantuno", "ottantadue", "ottantatre", "ottantaquattro", "ottantacinque", "ottantasei", "ottantasette", "ottantotto", "ottantanove", "novanta", "novantuno", "novantadue", "novantatre", "novantaquattro", "novantacinque", "novantasei", "novantasette", "novantotto", "novantanove" };
+
+        public static long testo_a_cifra(string testo)
+        {
+            string test = "";
+            long numeroDigitato = 0;
+            long numParziale = 0;
+            int ultimoNum = -1;
+            string   testoDigitatoDiviso = testo;
+          
+           
+            do
+            {
+               
+
+               
+                cento = false;
+                mille = false;
+                mila = false;
+                milione = false;
+                milioni = false;
+                miliardi = false;
+                miliardo = false;
+                bilione = false;
+                bilioni = false;
+                
+                indCento = -1;
+                indMille = -1;
+                indMila = -1;
+                indMilione = -1;
+                indMilioni = -1;
+                indMiliardo = -1;
+                indMiliardi = -1;
+                indBilione = -1;
+              
+                indBilioni= -1;
+              
+
+                cento = testoDigitatoDiviso.Contains("cento");
+                if (cento)
+                    indCento = testoDigitatoDiviso.IndexOf("cento");
+
+                mille = testoDigitatoDiviso.Contains("mille");
+                if (mille)
+                    indMille = testoDigitatoDiviso.IndexOf("mille");
+
+                mila = testoDigitatoDiviso.Contains("mila");
+                if (mila)
+                    indMila = testoDigitatoDiviso.IndexOf("mila");
+
+                milione = testoDigitatoDiviso.Contains("unmilione");
+                if (milione)
+                    indMilione = testoDigitatoDiviso.IndexOf("unmilione");
+
+                milioni = testoDigitatoDiviso.Contains("milioni");
+                if (milioni)
+                    indMilioni = testoDigitatoDiviso.IndexOf("milioni");
+
+                bilioni = testoDigitatoDiviso.Contains("bilioni");
+                if (bilioni)
+                    indBilioni = testoDigitatoDiviso.IndexOf("bilioni");
+
+               
+                miliardi = testoDigitatoDiviso.Contains("miliardi");
+                if (miliardi)
+                    indMiliardi = testoDigitatoDiviso.IndexOf("miliardi");
+
+                bilione = testoDigitatoDiviso.Contains("unbilione");
+                if (bilione)
+                    indBilione = testoDigitatoDiviso.IndexOf("unbilione");
+
+               
+                miliardo = testoDigitatoDiviso.Contains("unmiliardo");
+                if (miliardo)
+                    indMiliardo = testoDigitatoDiviso.IndexOf("unmiliardo");
+
+              
+                if (cento && parolaIniziale(indCento))
+                {
+
+                    if (numParziale % 10 == 0)
+                        numParziale += 100;
+                    else
+                    {
+                        string tmp = Convert.ToString(numParziale);
+                        string tmp1 = tmp.Substring(tmp.Length - 1, 1);
+                        long tmp2 = Convert.ToInt64(tmp1);
+                        numParziale -= tmp2;
+                        numParziale += tmp2 * 100;
+                    }
+                    testoDigitatoDiviso = testoDigitatoDiviso.Remove(0, 5);
+                    cento = false;
+                    indCento = -1;
+                }
+
+               
+                if (mille && parolaIniziale(indMille))
+                {
+                    if (numParziale == 0)
+                        numParziale += 1000;
+                    else
+                        numParziale = numParziale * 1000;
+                    testoDigitatoDiviso = testoDigitatoDiviso.Remove(0, 5);
+                    mille = false;
+                    indMille = -1;
+                }
+
+              
+                if (mila && parolaIniziale(indMila))
+                {
+
+                    if (numParziale == 0)
+                        numParziale += 1000;
+                    else
+                    {
+                        string tmp1 = "";
+                        string tmp = Convert.ToString(numParziale);
+                        if (tmp.Length == 1)
+                            tmp1 = tmp.Substring(tmp.Length - 1, 1);
+                        if (tmp.Length == 2)
+                            tmp1 = tmp.Substring(tmp.Length - 2, 2);
+                        if (tmp.Length >= 3)
+                            tmp1 = tmp.Substring(tmp.Length - 3, 3);
+                        long tmp2 = Convert.ToInt64(tmp1);
+                        numParziale -= tmp2;
+                        numParziale += tmp2 * 1000;
+                    }
+
+                    testoDigitatoDiviso= testoDigitatoDiviso.Remove(0, indMila + 4);
+                    mila = false;
+                    indMila = -1;
+                }
+
+              
+                if (milione && parolaIniziale(indMilione))
+                {
+                  //  if (numParziale == 0)
+                        numParziale += 1000000;
+                  //  else
+                  //      numParziale = numParziale * 1000000;
+                    testoDigitatoDiviso = testoDigitatoDiviso.Remove(0, 9);
+                    milione = false;
+                    indMilione= -1;
+                }
+
+               
+                if (milioni && parolaIniziale(indMilioni))
+                {
+
+                    if (numParziale == 0)
+                        numParziale += 1000000;
+                    else
+                    {
+                        string tmp1 = "";
+                        string tmp = Convert.ToString(numParziale);
+                        if (tmp.Length == 1)
+                            tmp1 = tmp.Substring(tmp.Length - 1, 1);
+                        if (tmp.Length == 2)
+                            tmp1 = tmp.Substring(tmp.Length - 2, 2);
+                        if (tmp.Length >= 3)
+                            tmp1 = tmp.Substring(tmp.Length - 3, 3);
+                        long tmp2 = Convert.ToInt64(tmp1);
+                        numParziale -= tmp2;
+                        numParziale += tmp2 * 1000000;
+                    }
+
+                    testoDigitatoDiviso = testoDigitatoDiviso.Remove(0, indMilioni + 7);
+
+                    milioni = false;
+                    indMilioni = -1;
+                }
+
+
+                if (miliardo && parolaIniziale(indMiliardo))
+                {
+                   // if (numParziale == 0)
+                        numParziale += 1000000000;
+                    //else
+                     //   numParziale = numParziale * 1000000000;
+                    testoDigitatoDiviso = testoDigitatoDiviso.Remove(0, 10);
+                    miliardo = false;
+                    indMiliardo= -1;
+                }
+
+               
+                if (miliardi && parolaIniziale(indMiliardi))
+                {
+
+                    if (numParziale == 0)
+                        numParziale += 1000000000;
+                    else
+                    {
+                        string tmp1 = "";
+                        string tmp = Convert.ToString(numParziale);
+                        if (tmp.Length == 1)
+                            tmp1 = tmp.Substring(tmp.Length - 1, 1);
+                        if (tmp.Length == 2)
+                            tmp1 = tmp.Substring(tmp.Length - 2, 2);
+                        if (tmp.Length >= 3)
+                            tmp1 = tmp.Substring(tmp.Length - 3, 3);
+                        long tmp2 = Convert.ToInt64(tmp1);
+                        numParziale -= tmp2;
+                        numParziale += tmp2 * 1000000000;
+                    }
+
+                    testoDigitatoDiviso = testoDigitatoDiviso.Remove(0, indMiliardi + 8);
+
+                    miliardi = false;
+                    indMiliardi = -1;
+                }
+
+                if (bilione && parolaIniziale(indBilione))
+                {
+                    //if (numParziale == 0)
+                        numParziale += 1000000000000;
+                   // else
+                     //   numParziale = numParziale * 1000000000000;
+                    testoDigitatoDiviso = testoDigitatoDiviso.Remove(0, 9);
+                    bilione = false;
+                    indBilione = -1;
+                }
+
+              
+                if (bilioni && parolaIniziale(indBilioni))
+                {
+
+                    if (numParziale == 0)
+                        numParziale += 1000000000000;
+                    else
+                    {
+                        string tmp1 = "";
+                        string tmp = Convert.ToString(numParziale);
+                        if (tmp.Length == 1)
+                            tmp1 = tmp.Substring(tmp.Length - 1, 1);
+                        if (tmp.Length == 2)
+                            tmp1 = tmp.Substring(tmp.Length - 2, 2);
+                        if (tmp.Length >= 3)
+                            tmp1 = tmp.Substring(tmp.Length - 3, 3);
+                        long tmp2 = Convert.ToInt64(tmp1);
+                        numParziale -= tmp2;
+                        numParziale += tmp2 * 1000000000000;
+                    }
+
+                    testoDigitatoDiviso = testoDigitatoDiviso.Remove(0, indBilioni + 7);
+
+                    bilioni = false;
+                    indBilioni = -1;
+                }
+
+               
+              
+                
+                cento = testoDigitatoDiviso.Contains("cento");
+                if (cento)
+                    indCento = testoDigitatoDiviso.IndexOf("cento");
+
+                mille = testoDigitatoDiviso.Contains("mille");
+                if (mille)
+                    indMille = testoDigitatoDiviso.IndexOf("mille");
+
+                mila = testoDigitatoDiviso.Contains("mila");
+                if (mila)
+                    indMila = testoDigitatoDiviso.IndexOf("mila");
+
+                milione = testoDigitatoDiviso.Contains("unmilione");
+                if (milione)
+                    indMilione = testoDigitatoDiviso.IndexOf("unmilione");
+
+                milioni = testoDigitatoDiviso.Contains("milioni");
+                if (milioni)
+                    indMilioni = testoDigitatoDiviso.IndexOf("milioni");
+
+                bilione = testoDigitatoDiviso.Contains("unbilione");
+                if (bilione)
+                    indBilione = testoDigitatoDiviso.IndexOf("unbilione");
+
+                bilioni = testoDigitatoDiviso.Contains("bilioni");
+                if (bilioni)
+                    indBilioni = testoDigitatoDiviso.IndexOf("bilioni");
+
+                miliardo = testoDigitatoDiviso.Contains("unmiliardo");
+                if (miliardo)
+                    indMiliardo= testoDigitatoDiviso.IndexOf("unmiliardo");
+
+                miliardi = testoDigitatoDiviso.Contains("miliardi");
+                if (miliardi)
+                    indMiliardi = testoDigitatoDiviso.IndexOf("miliardi");
+
+             
+
+              
+                if (testoDigitatoDiviso.Length > 0)
+                {
+                    //int a = 0;
+                    if (primaParola(indCento))
+                    {
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso.Substring(0, indCento));
+                    }
+                    else if (primaParola(indMille))
+                    {
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso.Substring(0, indMille));
+                    }
+                    else if (primaParola(indMila))
+                    {
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso.Substring(0, indMila));
+                    }
+                    else if (primaParola(indMilione))
+                    {
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso.Substring(0, indMilione));
+                    }
+                    else if (primaParola(indMilioni))
+                    {
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso.Substring(0, indMilioni));
+                    }
+                    else if (primaParola(indMiliardo))
+                    {
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso.Substring(0, indMiliardo));
+                    }
+                    else if (primaParola(indMiliardi))
+                    {
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso.Substring(0, indMiliardi));
+                    }
+                    else if (primaParola(indBilione))
+                    {
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso.Substring(0, indBilione));
+                    }
+                    else if (primaParola(indBilioni))
+                    {
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso.Substring(0, indBilioni));
+                    }
+
+                    else
+                        ultimoNum = cercaNumBase(testoDigitatoDiviso);
+
+                    if (ultimoNum != -1)
+                    {
+                        testoDigitatoDiviso = testoDigitatoDiviso.Remove(0, arrNumeri[ultimoNum].Length);
+                        numParziale += ultimoNum;
+                    }
+                   
+                }
+
+             
+                if (testoDigitatoDiviso.Length == 0)
+                {
+                    numeroDigitato = numParziale;
+                   
+                 
+
+                    test += numeroDigitato;
+                    ultimoNum = -1;
+                }
+
+            } while (cento || mille || mila || milione || milioni||miliardo||miliardi||bilione||bilioni);
+            long valore = -1; ;
+            long.TryParse(test, out valore);
+            return valore;
+        }
         public static string cifra_a_testo(long Cifra)
         {
 
@@ -28,9 +429,9 @@ namespace Calcolatrice_A_S_L
             string[] duplo = new string[10];
             string[] deca = new string[10];
             string[] cento = new string[3];
-            string[,] mili = new string[2, 10];
+            string[,] mili = new string[2, 8];
             dynamic max = null;
-            max = ((Math.Pow(10, (6 * 3))) - 1) - 1;
+            max = ((Math.Pow(10, (5 * 3))) - 1) - 1;
             //   Caricamento di mono in formato esteso
             mono[0] = "";
             mono[1] = "uno";
@@ -73,14 +474,14 @@ namespace Calcolatrice_A_S_L
             mili[0, 2] = "milione";
             mili[0, 3] = "miliardo";
             mili[0, 4] = "bilione";
-            mili[0, 5] = "biliardo";
+          
             //   Caricamento di mili[1 ,] in formato esteso
             mili[1, 0] = "";
             mili[1, 1] = "mila";
             mili[1, 2] = "milioni";
             mili[1, 3] = "miliardi";
             mili[1, 4] = "bilioni";
-            mili[1, 5] = "biliardi";
+           
             risultato = "";
             sezione = 0;
             if ((Cifra < 0))
@@ -215,7 +616,7 @@ namespace Calcolatrice_A_S_L
             }
 
         }
-        public static long testo_a_cifra(string Testo)
+       /* public static long testo_a_cifra(string Testo)
         {
 
             const long grandezza_arr = 51;
@@ -504,7 +905,7 @@ namespace Calcolatrice_A_S_L
             return -1;
         }
      
-
+    */
       
 
     }
