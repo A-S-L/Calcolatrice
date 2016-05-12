@@ -406,75 +406,7 @@ namespace Calcolatrice_A_S_L
         {
             Istruzioni ist = new Istruzioni();
             ist.Show();
-           /* chiudiPanel = true;
-            ToolStripButtonInfo.Enabled = false;
-
-            int larghezza = 0;
-
-            Button ButtonClose = new Button();
-            Label labelIstruzioni = new Label();
-            RichTextBox richTextBoxInfo = new RichTextBox();
-            PictureBox pictureBoxSchermata = new PictureBox();
-
-            Panel dynamicPanel = new Panel();
-            dynamicPanel.Name = "dynamicPanel";
-            dynamicPanel.BackColor = Color.LightGray;
-            dynamicPanel.BorderStyle = BorderStyle.FixedSingle;
-            dynamicPanel.Location = new System.Drawing.Point(100, 100);
-            dynamicPanel.Size = new Size(600, 350);
-
-
-            dynamicPanel.MouseDown += new MouseEventHandler(mouse_down);
-            dynamicPanel.MouseUp += new MouseEventHandler(mouse_up);
-            dynamicPanel.MouseMove += new MouseEventHandler(mouse_move);
-
-            Controls.Add(dynamicPanel);
-
-
-            ButtonClose.Name = "ButtonClose";
-            ButtonClose.Text = "Chiudi";
-            ButtonClose.Size = new Size(20, 20);
-
-            larghezza = dynamicPanel.Size.Width - (ButtonClose.Size.Width);
-
-            ButtonClose.Location = new System.Drawing.Point(larghezza, 0);
-            ButtonClose.BackgroundImage = Properties.Resources.chiusura.ToBitmap();
-            ButtonClose.BackgroundImageLayout = ImageLayout.Stretch;
-            ButtonClose.BackColor = Color.White;
-            ButtonClose.Text = "";
-
-            labelIstruzioni.Name = "labelIstruzioni";
-            labelIstruzioni.Text = "Istruzioni di utilizzo:";
-
-            ;
-            labelIstruzioni.Location = new System.Drawing.Point(20, 10);
-            labelIstruzioni.Size = new Size(170, 20);
-            labelIstruzioni.Font = new Font("Segoe Print", 10);
-
-            richTextBoxInfo.ReadOnly = true;
-            richTextBoxInfo.Name = "richTextBoxInfo";
-            richTextBoxInfo.Text = "esempi / eccezioni / sintassi:" + "\n" +
-                "200027 = duecentomilaventisettte (senza la 'e' tra duecentomila e ventisettte" + "\n" +
-                "188 = centoottantotto (con 2 'o')" + "\n" +
-                "numero^2 = numero alla due" + "\n" +
-                "√numero = esponente radice di numero ( due radice di due ) " + "\n" +
-                "6*(2+2) = numero per aperta parentesi numero piu numero chiusa parentesi" + "\n" +
-                "6,2 = numero virgola numero" + "\n";
-            richTextBoxInfo.Location = new System.Drawing.Point(20, 50);
-            richTextBoxInfo.Size = new Size(500, 100);
-            richTextBoxInfo.Font = new Font("Segoe Print", 10);
-
-            pictureBoxSchermata.Size = new Size(380, 190);
-            pictureBoxSchermata.Location = new System.Drawing.Point(20, 60 + richTextBoxInfo.Height);
-            pictureBoxSchermata.BackgroundImage = Properties.Resources.schermata;
-            pictureBoxSchermata.BackgroundImageLayout = ImageLayout.Stretch;
-
-            dynamicPanel.BringToFront();
-            dynamicPanel.Controls.Add(ButtonClose);
-            dynamicPanel.Controls.Add(labelIstruzioni);
-            dynamicPanel.Controls.Add(richTextBoxInfo);
-            dynamicPanel.Controls.Add(pictureBoxSchermata);
-            ButtonClose.MouseClick += new MouseEventHandler((o, s) => ChiudiPanel(o, s, dynamicPanel));*/
+          
         }
 
     /*    Point mousegiu;
