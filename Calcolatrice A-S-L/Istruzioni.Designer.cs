@@ -40,20 +40,85 @@
             "Sottrazione",
             "1-1 (0)",
             "Sottrae due numeri"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("/");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("*");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("rad");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("^");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("±");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("sen");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("cos");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("tg");
-            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem("cotg");
-            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem("(");
-            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(")");
-            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem("%");
-            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem("x");
-            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem("y");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem(new string[] {
+            "/",
+            "diviso",
+            "divisione",
+            "2/2 (1)",
+            "divide due numeri"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem(new string[] {
+            "*",
+            "per",
+            "moltiplicazione",
+            "2*2 (4)",
+            "moltiplica due numeri"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem(new string[] {
+            "rad",
+            "rad",
+            "radice",
+            "2 rad 4 (2)",
+            "esegue la radice di un numero"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem(new string[] {
+            "^",
+            "alla",
+            "elevamento a potenza",
+            "2^2 (4)",
+            "eleva a potenza un numero"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
+            "±",
+            "piuomeno",
+            "aggiungi e sottrai",
+            "±2",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
+            "sen",
+            "seno di",
+            "calcola il seno di un angolo",
+            "seno di 30 (1/2)",
+            "calcola il seno di un angolo"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
+            "cos",
+            "coseno di",
+            "calcola il coseno di un angolo",
+            "coseno di 60 (1/2)",
+            "calcola il coseno di un angolo"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem(new string[] {
+            "tg",
+            "tan di",
+            "calcola la tangente di un angolo",
+            "tan di 0 (0)",
+            "calcola la tangente di un angolo"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem11 = new System.Windows.Forms.ListViewItem(new string[] {
+            "cotg",
+            "cotg di",
+            "calcola la cotangente di un angolo",
+            "cotg di 90 (0)",
+            "calcola la cotangente di un angolo"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem12 = new System.Windows.Forms.ListViewItem(new string[] {
+            "(",
+            "aperta parentesi",
+            ""}, -1);
+            System.Windows.Forms.ListViewItem listViewItem13 = new System.Windows.Forms.ListViewItem(new string[] {
+            ")",
+            "chiusa parentesi"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem14 = new System.Windows.Forms.ListViewItem(new string[] {
+            "%",
+            "percentuale",
+            "calcola la percentuale di un numero",
+            "50% di 100 (50)",
+            "calcola la percentuale di un numero"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem15 = new System.Windows.Forms.ListViewItem(new string[] {
+            "x",
+            "x",
+            "variabile per equazioni",
+            "6x+5=0",
+            "variabile per equazioni"}, -1);
+            System.Windows.Forms.ListViewItem listViewItem16 = new System.Windows.Forms.ListViewItem(new string[] {
+            "y",
+            "y",
+            "variabile per equazioni",
+            "6y+5=0",
+            "variabile per equazioni"}, -1);
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -91,10 +156,11 @@
             listViewItem14,
             listViewItem15,
             listViewItem16});
-            this.listView1.Location = new System.Drawing.Point(12, 290);
+            this.listView1.Location = new System.Drawing.Point(8, 188);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(1262, 704);
+            this.listView1.Size = new System.Drawing.Size(843, 459);
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -131,11 +197,12 @@
             // 
             // Istruzioni
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1285, 1006);
+            this.ClientSize = new System.Drawing.Size(856, 654);
             this.Controls.Add(this.listView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "Istruzioni";
             this.Text = "Istruzioni";
