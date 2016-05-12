@@ -156,7 +156,7 @@
             listViewItem14,
             listViewItem15,
             listViewItem16});
-            this.listView1.Location = new System.Drawing.Point(8, 188);
+            this.listView1.Location = new System.Drawing.Point(11, 11);
             this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
@@ -181,7 +181,7 @@
             // 
             this.columnHeader3.Text = "Funzione";
             this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 235;
+            this.columnHeader3.Width = 362;
             // 
             // columnHeader4
             // 
@@ -199,7 +199,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(856, 654);
+            this.ClientSize = new System.Drawing.Size(856, 481);
             this.Controls.Add(this.listView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
