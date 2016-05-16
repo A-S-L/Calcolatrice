@@ -119,6 +119,27 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calc.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\b.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\impostazioni.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SaveImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\savpng.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\impostazioni.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\papiro.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

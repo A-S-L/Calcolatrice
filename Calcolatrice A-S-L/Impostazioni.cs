@@ -34,5 +34,7 @@ namespace Calcolatrice_A_S_L
           numericUpDown3.Value   = decimal.Parse(Properties.Settings.Default.precisione.ToString());
          numericUpDown4.Value   = decimal.Parse(Properties.Settings.Default.decimali.ToString());
         }
+
+       
     }
 }

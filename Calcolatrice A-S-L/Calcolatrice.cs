@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Calcolatrice_A_S_L
@@ -16,9 +17,7 @@ namespace Calcolatrice_A_S_L
         public static bool deg = true;
         public Calcolatrice()
         {
-            InitializeComponent();
-
-
+            InitializeComponent();          
         }
         bool t_c = true;
 
@@ -413,7 +412,7 @@ namespace Calcolatrice_A_S_L
         private void ToolStripButtonInfo_Click(object sender, EventArgs e)
         {
             Istruzioni ist = new Istruzioni();
-            ist.Show();
+            ist.ShowDialog();
           
         }
 
@@ -453,7 +452,7 @@ namespace Calcolatrice_A_S_L
 
         private void Form1_Load(object sender, EventArgs e)
         {
-       
+            
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -474,8 +473,11 @@ namespace Calcolatrice_A_S_L
             }
             else
             {
+                //rimette i colori originali
                 textBoxRisultatoParole.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
                 textBoxRisultatoNumeri.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
+                //pulisce la textbox della x
+                richTextBoxX.Clear();
             }
         }
 
@@ -489,8 +491,11 @@ namespace Calcolatrice_A_S_L
             }
             else
             {
+                //rimette i colori originali
                 textBoxRisultatoParole.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
                 textBoxRisultatoNumeri.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
+                //pulisce la textbox della x
+                richTextBoxX.Clear();
             }
         }
 
