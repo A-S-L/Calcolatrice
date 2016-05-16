@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Calcolatrice_A_S_L
@@ -17,15 +18,13 @@ namespace Calcolatrice_A_S_L
         public Calcolatrice()
         {
             InitializeComponent();
-           
-
         }
         bool t_c = true;
 
         public static List<string> risultati_x = new List<string>();
         private void button1_Click(object sender, EventArgs e)
         {
-
+            
             risultati_x.Clear();
             Grafico_Form.ciao.Close();
             textBoxRisultatoNumeri.Clear();
@@ -43,7 +42,7 @@ namespace Calcolatrice_A_S_L
         }
         public void calcola_da_numero()
         {
-
+          
             string numero = textBoxNumeri.Text;
             string testo = esp_numero_testo(numero);
             textBoxParole.Text = testo;
@@ -70,7 +69,7 @@ namespace Calcolatrice_A_S_L
                     if (Parser.EspressioneCorretta(test, false, out risultato))
                     {
                         textBoxRisultatoNumeri.Text += test + " = " + risultato.ToString() + "\r\n";
-
+                      
                         textBoxRisultatoParole.Text += esp_numero_testo(test) + " = " + esp_numero_testo(risultato.ToString()) + "\r\n";
                     }
                     else
@@ -100,7 +99,7 @@ namespace Calcolatrice_A_S_L
                     }
                 }
                 return;
-
+               
             }
             double Risultato;
             if (Parser.EspressioneCorretta(numero, deg, out Risultato))
@@ -115,12 +114,12 @@ namespace Calcolatrice_A_S_L
                         bool yy = false;
                         if (numero.Contains("y"))
                             yy = true;
-                        Grafico_Form.inizio(new string[] { numero }, deg, yy);
+                         Grafico_Form.inizio(new string[] { numero }, deg, yy);
                         richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray()) + "\n";
                     }
                 }
 
-
+                
 
             }
         }
@@ -150,7 +149,7 @@ namespace Calcolatrice_A_S_L
                     double risultato;
                     if (Parser.EspressioneCorretta(esp_testo_numero(test), false, out risultato))
                     {
-
+                       
                         textBoxRisultatoParole.Text += test + " = " + esp_numero_testo(risultato.ToString()) + "\r\n";
 
                         textBoxRisultatoNumeri.Text += esp_testo_numero(test) + " = " + risultato.ToString() + "\r\n";
@@ -186,9 +185,9 @@ namespace Calcolatrice_A_S_L
             double Risultato;
             if (Parser.EspressioneCorretta(numero, deg, out Risultato))
             {
-
+             
                 textBoxRisultatoNumeri.Text = esp_testo_numero(testo) + " = " + Risultato;
-                textBoxRisultatoParole.Text = testo + " = " + esp_numero_testo(Risultato.ToString());
+                textBoxRisultatoParole.Text = testo + " = " + esp_numero_testo(Risultato.ToString()); 
                 if (testo.Contains("x"))
                 {
                     if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -202,9 +201,9 @@ namespace Calcolatrice_A_S_L
                 }
 
 
-
+              
             }
-
+           
         }
         public string esp_testo_numero(string testo)
         {
@@ -345,7 +344,7 @@ namespace Calcolatrice_A_S_L
 
                 num = "";
             }
-
+            
             return string.Join(" ", risultato);
 
 
@@ -403,7 +402,7 @@ namespace Calcolatrice_A_S_L
             else
             {
                 textBoxParole.ReadOnly = true;
-                textBoxNumeri.ReadOnly = false;
+                textBoxNumeri.ReadOnly = false;              
                 textBoxNumeri.BackColor = Color.FromKnownColor(KnownColor.Control);
                 textBoxNumeri.Focus();
             }
@@ -414,65 +413,46 @@ namespace Calcolatrice_A_S_L
         private void ToolStripButtonInfo_Click(object sender, EventArgs e)
         {
             Istruzioni ist = new Istruzioni();
-            ist.Show();
-
+            ist.ShowDialog();
+          
         }
 
-        /*    Point mousegiu;
-            bool moving = false;
-            public void mouse_down(object sender, MouseEventArgs e)
+    /*    Point mousegiu;
+        bool moving = false;
+        public void mouse_down(object sender, MouseEventArgs e)
+        {
+            moving = true;
+            mousegiu = e.Location;
+        }
+        public void mouse_move(object sender, MouseEventArgs e)
+        {
+            if (moving)
             {
-                moving = true;
-                mousegiu = e.Location;
+                Panel pannello = (Panel)sender;
+
+                pannello.Left = e.X + pannello.Left - mousegiu.X;
+                pannello.Top = e.Y + pannello.Top - mousegiu.Y;
+
             }
-            public void mouse_move(object sender, MouseEventArgs e)
+        }
+        public void mouse_up(object sender, MouseEventArgs e)
+        {
+            moving = false;
+        }
+
+        public void ChiudiPanel(object sender, MouseEventArgs e, Panel pannello)
+        {
+
+            if (chiudiPanel)
             {
-                if (moving)
-                {
-                    Panel pannello = (Panel)sender;
-
-                    pannello.Left = e.X + pannello.Left - mousegiu.X;
-                    pannello.Top = e.Y + pannello.Top - mousegiu.Y;
-
-                }
+                pannello.Hide();
+                ToolStripButtonInfo.Enabled = true;
             }
-            public void mouse_up(object sender, MouseEventArgs e)
-            {
-                moving = false;
-            }
 
-            public void ChiudiPanel(object sender, MouseEventArgs e, Panel pannello)
-            {
-
-                if (chiudiPanel)
-                {
-                    pannello.Hide();
-                    ToolStripButtonInfo.Enabled = true;
-                }
-
-            }*/
+        }*/
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Show();
-            int x = 0;
-            int y = 0;
-            Size = new Size(0, 0);
-            for (int i = 0; i < 832; i++)
-            {
-
-                Size = new Size(x, y);
-                
-               
-                if (x < 831)
-                {
-                    x++;
-                    if (y < 664)
-                    {
-                        y++;
-                    }
-                }
-            }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -481,7 +461,7 @@ namespace Calcolatrice_A_S_L
             imp.ShowDialog();
         }
 
-
+        
 
         private void textBoxParole_KeyDown(object sender, KeyEventArgs e)
         {
@@ -493,8 +473,11 @@ namespace Calcolatrice_A_S_L
             }
             else
             {
+                //rimette i colori originali
                 textBoxRisultatoParole.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
                 textBoxRisultatoNumeri.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
+                //pulisce la textbox della x
+                richTextBoxX.Clear();
             }
         }
 
@@ -508,8 +491,11 @@ namespace Calcolatrice_A_S_L
             }
             else
             {
+                //rimette i colori originali
                 textBoxRisultatoParole.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
                 textBoxRisultatoNumeri.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
+                //pulisce la textbox della x
+                richTextBoxX.Clear();
             }
         }
 
