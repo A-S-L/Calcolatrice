@@ -80,6 +80,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Impostazioni.resx">
       <DependentUpon>Impostazioni.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Istruzioni.resx">
       <DependentUpon>Istruzioni.cs</DependentUpon>

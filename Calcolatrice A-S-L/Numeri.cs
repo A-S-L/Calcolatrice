@@ -407,8 +407,12 @@ namespace Calcolatrice_A_S_L
 
             } while (cento || mille || mila || milione || milioni||miliardo||miliardi||bilione||bilioni);
             long valore = -1; ;
-            long.TryParse(test, out valore);
-            return valore;
+            if(long.TryParse(test, out valore))
+                {
+                return valore;
+            }
+            else
+            return -1;
         }
         public static string cifra_a_testo(long Cifra)
         {

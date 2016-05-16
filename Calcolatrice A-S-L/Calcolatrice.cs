@@ -17,7 +17,7 @@ namespace Calcolatrice_A_S_L
         public Calcolatrice()
         {
             InitializeComponent();
-
+           
 
         }
         bool t_c = true;
@@ -25,7 +25,7 @@ namespace Calcolatrice_A_S_L
         public static List<string> risultati_x = new List<string>();
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             risultati_x.Clear();
             Grafico_Form.ciao.Close();
             textBoxRisultatoNumeri.Clear();
@@ -43,7 +43,7 @@ namespace Calcolatrice_A_S_L
         }
         public void calcola_da_numero()
         {
-          
+
             string numero = textBoxNumeri.Text;
             string testo = esp_numero_testo(numero);
             textBoxParole.Text = testo;
@@ -67,10 +67,10 @@ namespace Calcolatrice_A_S_L
                     }
                     test = test.Replace('±', '-');
                     double risultato;
-                    if (Parser.EspressioneCorretta(test, false,out risultato))
+                    if (Parser.EspressioneCorretta(test, false, out risultato))
                     {
                         textBoxRisultatoNumeri.Text += test + " = " + risultato.ToString() + "\r\n";
-                      
+
                         textBoxRisultatoParole.Text += esp_numero_testo(test) + " = " + esp_numero_testo(risultato.ToString()) + "\r\n";
                     }
                     else
@@ -88,7 +88,7 @@ namespace Calcolatrice_A_S_L
                     test = numero;
                 }
 
-                if(numero.Contains("x"))
+                if (numero.Contains("x"))
                 {
                     if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
@@ -96,14 +96,14 @@ namespace Calcolatrice_A_S_L
                         if (numero.Contains("y"))
                             yy = true;
                         Grafico_Form.inizio(espressioni, deg, yy);
-                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray())+"\n";
+                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray()) + "\n";
                     }
                 }
                 return;
-               
+
             }
             double Risultato;
-            if (Parser.EspressioneCorretta(numero, deg,out Risultato))
+            if (Parser.EspressioneCorretta(numero, deg, out Risultato))
             {
                 textBoxRisultatoNumeri.Text += numero + " = " + Risultato.ToString() + "\r\n";
 
@@ -115,12 +115,12 @@ namespace Calcolatrice_A_S_L
                         bool yy = false;
                         if (numero.Contains("y"))
                             yy = true;
-                         Grafico_Form.inizio(new string[] { numero }, deg, yy);
-                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray())+"\n";
+                        Grafico_Form.inizio(new string[] { numero }, deg, yy);
+                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray()) + "\n";
                     }
                 }
 
-                
+
 
             }
         }
@@ -148,9 +148,9 @@ namespace Calcolatrice_A_S_L
                     string riss;
                     test = test.Replace("piuomeno", "meno");
                     double risultato;
-                    if (Parser.EspressioneCorretta(esp_testo_numero(test), false,out risultato))
+                    if (Parser.EspressioneCorretta(esp_testo_numero(test), false, out risultato))
                     {
-                       
+
                         textBoxRisultatoParole.Text += test + " = " + esp_numero_testo(risultato.ToString()) + "\r\n";
 
                         textBoxRisultatoNumeri.Text += esp_testo_numero(test) + " = " + risultato.ToString() + "\r\n";
@@ -177,18 +177,18 @@ namespace Calcolatrice_A_S_L
                         if (testo.Contains("y"))
                             yy = true;
                         Grafico_Form.inizio(espressioni, deg, yy);
-                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray())+"\n";
+                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray()) + "\n";
                     }
                 }
                 return;
 
             }
             double Risultato;
-           if (Parser.EspressioneCorretta(numero, deg,out Risultato))
+            if (Parser.EspressioneCorretta(numero, deg, out Risultato))
             {
-             
+
                 textBoxRisultatoNumeri.Text = esp_testo_numero(testo) + " = " + Risultato;
-                textBoxRisultatoParole.Text = testo + " = " + esp_numero_testo(Risultato.ToString()); 
+                textBoxRisultatoParole.Text = testo + " = " + esp_numero_testo(Risultato.ToString());
                 if (testo.Contains("x"))
                 {
                     if (MessageBox.Show("L'espressione contine una incognita, visualizzarne il grafico posto y= epressione?", "Calcolatrice", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -197,14 +197,14 @@ namespace Calcolatrice_A_S_L
                         if (testo.Contains("y"))
                             yy = true;
                         Grafico_Form.inizio(new string[] { numero }, deg, yy);
-                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray())+ "\n";
+                        richTextBoxX.Text = "X= " + string.Join(" X= ", risultati_x.ToArray()) + "\n";
                     }
                 }
 
 
-              
+
             }
-           
+
         }
         public string esp_testo_numero(string testo)
         {
@@ -217,7 +217,7 @@ namespace Calcolatrice_A_S_L
             foreach (string termine in termini)
             {
 
-
+                long riss;
                 if (is_Operatore(termine))
                 {
                     Array.Resize(ref risultato, risultato.Length + 1);
@@ -235,16 +235,16 @@ namespace Calcolatrice_A_S_L
                 {
                     risultato[risultato.Length - 1] += ",";
                 }
-                else if (is_Numero(termine))
+                else if (is_Numero(termine, out riss))
                 {
                     if (precedente == "virgola")
                     {
-                        risultato[risultato.Length - 1] += Numeri.testo_a_cifra(termine).ToString();
+                        risultato[risultato.Length - 1] += riss.ToString();
                     }
                     else
                     {
                         Array.Resize(ref risultato, risultato.Length + 1);
-                        risultato[risultato.Length - 1] = Numeri.testo_a_cifra(termine).ToString();
+                        risultato[risultato.Length - 1] = riss.ToString();
                     }
                 }
 
@@ -345,7 +345,7 @@ namespace Calcolatrice_A_S_L
 
                 num = "";
             }
-            
+
             return string.Join(" ", risultato);
 
 
@@ -366,9 +366,10 @@ namespace Calcolatrice_A_S_L
             }
             return -1;
         }
-        public bool is_Numero(string numero)
+        public bool is_Numero(string numero, out long risultato)
         {
-            if (Numeri.testo_a_cifra(numero) >= 0)
+            risultato = Numeri.testo_a_cifra(numero);
+            if (risultato >= 0)
                 return true;
             return false;
         }
@@ -402,8 +403,8 @@ namespace Calcolatrice_A_S_L
             else
             {
                 textBoxParole.ReadOnly = true;
-                textBoxNumeri.ReadOnly = false;              
-                textBoxNumeri.BackColor = Color.FromKnownColor( KnownColor.Control);
+                textBoxNumeri.ReadOnly = false;
+                textBoxNumeri.BackColor = Color.FromKnownColor(KnownColor.Control);
                 textBoxNumeri.Focus();
             }
         }
@@ -414,46 +415,64 @@ namespace Calcolatrice_A_S_L
         {
             Istruzioni ist = new Istruzioni();
             ist.Show();
-          
+
         }
 
-    /*    Point mousegiu;
-        bool moving = false;
-        public void mouse_down(object sender, MouseEventArgs e)
-        {
-            moving = true;
-            mousegiu = e.Location;
-        }
-        public void mouse_move(object sender, MouseEventArgs e)
-        {
-            if (moving)
+        /*    Point mousegiu;
+            bool moving = false;
+            public void mouse_down(object sender, MouseEventArgs e)
             {
-                Panel pannello = (Panel)sender;
-
-                pannello.Left = e.X + pannello.Left - mousegiu.X;
-                pannello.Top = e.Y + pannello.Top - mousegiu.Y;
-
+                moving = true;
+                mousegiu = e.Location;
             }
-        }
-        public void mouse_up(object sender, MouseEventArgs e)
-        {
-            moving = false;
-        }
-
-        public void ChiudiPanel(object sender, MouseEventArgs e, Panel pannello)
-        {
-
-            if (chiudiPanel)
+            public void mouse_move(object sender, MouseEventArgs e)
             {
-                pannello.Hide();
-                ToolStripButtonInfo.Enabled = true;
+                if (moving)
+                {
+                    Panel pannello = (Panel)sender;
+
+                    pannello.Left = e.X + pannello.Left - mousegiu.X;
+                    pannello.Top = e.Y + pannello.Top - mousegiu.Y;
+
+                }
+            }
+            public void mouse_up(object sender, MouseEventArgs e)
+            {
+                moving = false;
             }
 
-        }*/
+            public void ChiudiPanel(object sender, MouseEventArgs e, Panel pannello)
+            {
+
+                if (chiudiPanel)
+                {
+                    pannello.Hide();
+                    ToolStripButtonInfo.Enabled = true;
+                }
+
+            }*/
 
         private void Form1_Load(object sender, EventArgs e)
         {
-       
+            Show();
+            int x = 0;
+            int y = 0;
+            Size = new Size(0, 0);
+            for (int i = 0; i < 832; i++)
+            {
+
+                Size = new Size(x, y);
+                
+               
+                if (x < 831)
+                {
+                    x++;
+                    if (y < 664)
+                    {
+                        y++;
+                    }
+                }
+            }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -462,11 +481,11 @@ namespace Calcolatrice_A_S_L
             imp.ShowDialog();
         }
 
-        
+
 
         private void textBoxParole_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode==Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 button1_Click(null, null);
                 textBoxRisultatoParole.BackColor = Color.LightGreen;
