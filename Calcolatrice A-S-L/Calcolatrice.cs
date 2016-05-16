@@ -36,8 +36,7 @@ namespace Calcolatrice_A_S_L
             else
                 calcola_da_numero();
 
-            textBoxRisultatoParole.BackColor = Color.LightGreen;
-            textBoxRisultatoNumeri.BackColor = Color.LightGreen;
+         
 
         }
         public void calcola_da_numero()
@@ -451,9 +450,7 @@ namespace Calcolatrice_A_S_L
 
         }*/
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
+        
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -473,10 +470,10 @@ namespace Calcolatrice_A_S_L
             }
             else
             {
-                //rimette i colori originali
-                textBoxRisultatoParole.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
-                textBoxRisultatoNumeri.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
-                //pulisce la textbox della x
+
+                //pulisce le textbox 
+                textBoxRisultatoParole.Clear();
+                textBoxRisultatoNumeri.Clear();
                 richTextBoxX.Clear();
             }
         }
@@ -486,15 +483,13 @@ namespace Calcolatrice_A_S_L
             if (e.KeyCode == Keys.Enter)
             {
                 button1_Click(null, null);
-                textBoxRisultatoParole.BackColor = Color.LightGreen;
-                textBoxRisultatoNumeri.BackColor = Color.LightGreen;
+               
             }
             else
             {
-                //rimette i colori originali
-                textBoxRisultatoParole.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
-                textBoxRisultatoNumeri.BackColor = Color.FromKnownColor(KnownColor.ControlLight);
-                //pulisce la textbox della x
+                //pulisce le textbox della 
+                textBoxRisultatoParole.Clear();
+                textBoxRisultatoNumeri.Clear();
                 richTextBoxX.Clear();
             }
         }

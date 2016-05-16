@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AlphaBlendTextBox">
+      <HintPath>..\..\..\..\Desktop\Nuova cartella (2)\AlphaBlendTextBox.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -140,6 +143,54 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\papiro.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\papiro1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\papiro2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\papiro11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carta.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carta1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quadretti.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\righe.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\righe1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\righe2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\quadretti1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carta2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\math.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\math1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\b1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\omino.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\omino1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

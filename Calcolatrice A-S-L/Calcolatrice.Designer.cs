@@ -39,8 +39,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBoxParole = new System.Windows.Forms.TextBox();
             this.textBoxNumeri = new System.Windows.Forms.TextBox();
-            this.textBoxRisultatoParole = new System.Windows.Forms.TextBox();
-            this.textBoxRisultatoNumeri = new System.Windows.Forms.TextBox();
             this.radioButtonGradi = new System.Windows.Forms.RadioButton();
             this.radioButtonRadianti = new System.Windows.Forms.RadioButton();
             this.groupBoxAngoli = new System.Windows.Forms.GroupBox();
@@ -49,9 +47,15 @@
             this.groupBoxOpzioni = new System.Windows.Forms.GroupBox();
             this.labelNumeri = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBoxRisultatoParole = new ZBobb.AlphaBlendTextBox();
+            this.panelSfondo = new System.Windows.Forms.Panel();
+            this.textBoxRisultatoNumeri = new ZBobb.AlphaBlendTextBox();
+            this.panelSfondo1 = new System.Windows.Forms.Panel();
             this.toolStripMenu.SuspendLayout();
             this.groupBoxAngoli.SuspendLayout();
             this.groupBoxOpzioni.SuspendLayout();
+            this.panelSfondo.SuspendLayout();
+            this.panelSfondo1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelParole
@@ -122,7 +126,7 @@
             this.richTextBoxX.BackColor = System.Drawing.Color.White;
             this.richTextBoxX.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBoxX.Font = new System.Drawing.Font("Segoe Print", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxX.Location = new System.Drawing.Point(581, 314);
+            this.richTextBoxX.Location = new System.Drawing.Point(576, 303);
             this.richTextBoxX.Name = "richTextBoxX";
             this.richTextBoxX.ReadOnly = true;
             this.richTextBoxX.Size = new System.Drawing.Size(101, 61);
@@ -135,7 +139,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.BackgroundImage = global::Calcolatrice_A_S_L.Properties.Resources.papiro;
+            this.button1.BackgroundImage = global::Calcolatrice_A_S_L.Properties.Resources.b1;
             this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -143,10 +147,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Segoe Print", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(595, 621);
+            this.button1.Location = new System.Drawing.Point(613, 595);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 99);
+            this.button1.Size = new System.Drawing.Size(192, 95);
             this.button1.TabIndex = 2;
             this.button1.Text = "Calcola";
             this.button1.UseVisualStyleBackColor = false;
@@ -178,37 +182,6 @@
             this.textBoxNumeri.Size = new System.Drawing.Size(358, 29);
             this.textBoxNumeri.TabIndex = 1;
             this.textBoxNumeri.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNumeri_KeyDown);
-            // 
-            // textBoxRisultatoParole
-            // 
-            this.textBoxRisultatoParole.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxRisultatoParole.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBoxRisultatoParole.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRisultatoParole.Location = new System.Drawing.Point(11, 199);
-            this.textBoxRisultatoParole.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxRisultatoParole.Multiline = true;
-            this.textBoxRisultatoParole.Name = "textBoxRisultatoParole";
-            this.textBoxRisultatoParole.ReadOnly = true;
-            this.textBoxRisultatoParole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxRisultatoParole.Size = new System.Drawing.Size(358, 81);
-            this.textBoxRisultatoParole.TabIndex = 6;
-            // 
-            // textBoxRisultatoNumeri
-            // 
-            this.textBoxRisultatoNumeri.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxRisultatoNumeri.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.textBoxRisultatoNumeri.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxRisultatoNumeri.Location = new System.Drawing.Point(418, 199);
-            this.textBoxRisultatoNumeri.Margin = new System.Windows.Forms.Padding(2);
-            this.textBoxRisultatoNumeri.Multiline = true;
-            this.textBoxRisultatoNumeri.Name = "textBoxRisultatoNumeri";
-            this.textBoxRisultatoNumeri.ReadOnly = true;
-            this.textBoxRisultatoNumeri.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxRisultatoNumeri.Size = new System.Drawing.Size(358, 81);
-            this.textBoxRisultatoNumeri.TabIndex = 7;
             // 
             // radioButtonGradi
             // 
@@ -325,6 +298,54 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Risultato in numeri";
             // 
+            // textBoxRisultatoParole
+            // 
+            this.textBoxRisultatoParole.BackAlpha = 10;
+            this.textBoxRisultatoParole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.textBoxRisultatoParole.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxRisultatoParole.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRisultatoParole.Location = new System.Drawing.Point(0, 0);
+            this.textBoxRisultatoParole.Multiline = true;
+            this.textBoxRisultatoParole.Name = "textBoxRisultatoParole";
+            this.textBoxRisultatoParole.ReadOnly = true;
+            this.textBoxRisultatoParole.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxRisultatoParole.Size = new System.Drawing.Size(357, 89);
+            this.textBoxRisultatoParole.TabIndex = 19;
+            // 
+            // panelSfondo
+            // 
+            this.panelSfondo.BackgroundImage = global::Calcolatrice_A_S_L.Properties.Resources.carta2;
+            this.panelSfondo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelSfondo.Controls.Add(this.textBoxRisultatoParole);
+            this.panelSfondo.Location = new System.Drawing.Point(12, 190);
+            this.panelSfondo.Name = "panelSfondo";
+            this.panelSfondo.Size = new System.Drawing.Size(357, 91);
+            this.panelSfondo.TabIndex = 20;
+            // 
+            // textBoxRisultatoNumeri
+            // 
+            this.textBoxRisultatoNumeri.BackAlpha = 10;
+            this.textBoxRisultatoNumeri.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.textBoxRisultatoNumeri.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxRisultatoNumeri.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRisultatoNumeri.Location = new System.Drawing.Point(0, 0);
+            this.textBoxRisultatoNumeri.Multiline = true;
+            this.textBoxRisultatoNumeri.Name = "textBoxRisultatoNumeri";
+            this.textBoxRisultatoNumeri.ReadOnly = true;
+            this.textBoxRisultatoNumeri.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxRisultatoNumeri.Size = new System.Drawing.Size(357, 91);
+            this.textBoxRisultatoNumeri.TabIndex = 21;
+            // 
+            // panelSfondo1
+            // 
+            this.panelSfondo1.BackgroundImage = global::Calcolatrice_A_S_L.Properties.Resources.quadretti1;
+            this.panelSfondo1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelSfondo1.Controls.Add(this.textBoxRisultatoNumeri);
+            this.panelSfondo1.Location = new System.Drawing.Point(418, 190);
+            this.panelSfondo1.Name = "panelSfondo1";
+            this.panelSfondo1.Size = new System.Drawing.Size(357, 91);
+            this.panelSfondo1.TabIndex = 22;
+            // 
             // Calcolatrice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,7 +353,9 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::Calcolatrice_A_S_L.Properties.Resources.calc;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(816, 731);
+            this.ClientSize = new System.Drawing.Size(816, 711);
+            this.Controls.Add(this.panelSfondo1);
+            this.Controls.Add(this.panelSfondo);
             this.Controls.Add(this.richTextBoxX);
             this.Controls.Add(this.toolStripMenu);
             this.Controls.Add(this.labelParole);
@@ -341,8 +364,6 @@
             this.Controls.Add(this.labelRisultatoParole);
             this.Controls.Add(this.groupBoxOpzioni);
             this.Controls.Add(this.groupBoxAngoli);
-            this.Controls.Add(this.textBoxRisultatoNumeri);
-            this.Controls.Add(this.textBoxRisultatoParole);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBoxNumeri);
             this.Controls.Add(this.textBoxParole);
@@ -353,13 +374,16 @@
             this.Name = "Calcolatrice";
             this.Text = "Calcolatrice in lingua Italiana";
             this.TransparencyKey = System.Drawing.Color.Maroon;
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.toolStripMenu.ResumeLayout(false);
             this.toolStripMenu.PerformLayout();
             this.groupBoxAngoli.ResumeLayout(false);
             this.groupBoxAngoli.PerformLayout();
             this.groupBoxOpzioni.ResumeLayout(false);
             this.groupBoxOpzioni.PerformLayout();
+            this.panelSfondo.ResumeLayout(false);
+            this.panelSfondo.PerformLayout();
+            this.panelSfondo1.ResumeLayout(false);
+            this.panelSfondo1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -381,11 +405,13 @@
         private System.Windows.Forms.GroupBox groupBoxAngoli;
         public System.Windows.Forms.RadioButton radioButtonRadianti;
         public System.Windows.Forms.RadioButton radioButtonGradi;
-        private System.Windows.Forms.TextBox textBoxRisultatoNumeri;
-        private System.Windows.Forms.TextBox textBoxRisultatoParole;
         private System.Windows.Forms.TextBox textBoxNumeri;
         private System.Windows.Forms.TextBox textBoxParole;
         private System.Windows.Forms.Button button1;
+        private ZBobb.AlphaBlendTextBox textBoxRisultatoParole;
+        private System.Windows.Forms.Panel panelSfondo;
+        private ZBobb.AlphaBlendTextBox textBoxRisultatoNumeri;
+        private System.Windows.Forms.Panel panelSfondo1;
     }
 }
 
