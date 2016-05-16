@@ -14,6 +14,9 @@ namespace Calcolatrice_A_S_L
 {
     public partial class Calcolatrice : Form
     {
+        //variabile per controllare i parametri inseriti nelle apposite textbox
+        string numeri = "0123456789";
+
         public static bool deg = true;
         public Calcolatrice()
         {
@@ -462,11 +465,11 @@ namespace Calcolatrice_A_S_L
 
         private void textBoxParole_KeyDown(object sender, KeyEventArgs e)
         {
+            
+
             if (e.KeyCode == Keys.Enter)
             {
-                button1_Click(null, null);
-                textBoxRisultatoParole.BackColor = Color.LightGreen;
-                textBoxRisultatoNumeri.BackColor = Color.LightGreen;
+                button1_Click(null, null);               
             }
             else
             {
