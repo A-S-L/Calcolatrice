@@ -33,9 +33,12 @@ namespace Calcolatrice_A_S_L
             }
         }
 
-        public double applica(double x,double y,bool radianti)
+        public bool applica(double x, double y, bool radianti, out double risultato)
         {
-            return Parser.CalcolaEspressione(_espressione,x,y,radianti);
+
+            if (Parser.EspressioneCorretta(_espressione, radianti, out risultato, x, y))
+                return true;
+            return false;
             //  return (float) _calcolafunzione.Invoke(null, new object[] {x});
         }
     }

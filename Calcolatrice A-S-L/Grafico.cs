@@ -68,7 +68,10 @@ namespace Calcolatrice_A_S_L
                 for (float x = -grafico.numerocelle / 2; x < grafico.numerocelle / 2; x += grafico.passo)
 
                 {
-                    double y = f.applica(x, 0, radianti);
+                    double y;
+
+                    if (!f.applica(x, 0, radianti, out y))
+                        continue;
                     PointF point = puntotrasformato(new PointF(x, (float)y));
 
                     if (double.IsNaN(y))
