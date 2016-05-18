@@ -394,8 +394,10 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Calcolatrice";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calcolatrice in lingua Italiana";
             this.TransparencyKey = System.Drawing.Color.Maroon;
+            this.Load += new System.EventHandler(this.Calcolatrice_Load);
             this.toolStripMenu.ResumeLayout(false);
             this.toolStripMenu.PerformLayout();
             this.groupBoxAngoli.ResumeLayout(false);

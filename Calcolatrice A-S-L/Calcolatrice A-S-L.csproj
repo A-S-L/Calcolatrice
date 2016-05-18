@@ -74,6 +74,12 @@
     <Compile Include="Istruzioni.Designer.cs">
       <DependentUpon>Istruzioni.cs</DependentUpon>
     </Compile>
+    <Compile Include="Avvio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Avvio.Designer.cs">
+      <DependentUpon>Avvio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Numeri.cs" />
     <Compile Include="Operatori.cs" />
     <Compile Include="Parser.cs" />
@@ -88,6 +94,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Istruzioni.resx">
       <DependentUpon>Istruzioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Avvio.resx">
+      <DependentUpon>Avvio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -195,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AlphaBlendTextBox.dll" />
+    <None Include="Resources\graphicCalculator11.jpg" />
     <None Include="Resources\calc2.jpg" />
     <None Include="Resources\calc1.jpg" />
   </ItemGroup>

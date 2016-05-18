@@ -551,5 +551,15 @@ namespace Calcolatrice_A_S_L
             else
                 calcola_da_numero();
         }
+
+        private void Calcolatrice_Load(object sender, EventArgs e)
+        {
+            Hide();
+            Avvio frmLoad = new Avvio();
+            frmLoad.Show();
+            Thread.Sleep(5000);
+            frmLoad.Hide();
+            Show();
+        }
     }
 }
