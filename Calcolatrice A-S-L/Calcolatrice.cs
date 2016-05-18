@@ -536,6 +536,20 @@ namespace Calcolatrice_A_S_L
                 e.Handled = true;
             
         }
-    
-}
+
+        //Label di suggerimento per fare i calcoli che permette anche di essere premuta.
+        private void labelEnter_Click(object sender, EventArgs e)
+        {
+            risultati_x.Clear();
+            Grafico_Form.ciao.Close();
+            textBoxRisultatoNumeri.Clear();
+            textBoxRisultatoParole.Clear();
+            string risultato_lettere = "";
+            string risultato_cifre = "";
+            if (t_c)
+                calcola_da_testo();
+            else
+                calcola_da_numero();
+        }
+    }
 }
